@@ -1,0 +1,42 @@
+name: Crea grafiche eventi
+
+on:
+  push:
+    branches: [main]
+    paths: ["events.csv"]
+  schedule:
+    - cron: "40 7 * * *"   # ogni mattina
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: generate
+  cancel-in-progress: false
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Strumenti
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg fonts-noto-color-emoji >/dev/null
+          pip install --quiet pillow playwright && python -m playwright install --with-deps chromium
+      - name: Crea post, storie e reel per gli eventi nuovi
+        run: python generate.py
+      - name: Salva le grafiche
+        run: |
+          if [ -n "$(git status --porcelain media)" ]; then
+            git config user.name "eventdimension-bot"
+            git config user.email "bot@users.noreply.github.com"
+            git add media
+            git commit -m "Nuove grafiche eventi"
+            git pull --rebase
+            git push
+          fi
