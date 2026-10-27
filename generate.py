@@ -5,8 +5,8 @@ Legge events.csv (slug,name,sub,date,venue,link[,image]) e, per ogni evento
 che non ha ancora i file in media/, scarica la locandina dalla pagina evento
 del sito (og:image) e crea:
   media/post-<slug>.jpg        locandina per post (JPG, max 1080 px)
-  media/storia-<slug>-link.jpg storia 1080x1920 a tutto schermo, spazio libero per lo sticker link
-  media/storia-<slug>.jpg      storia 1080x1920 a tutto schermo con "link in bio"
+  media/storia-<slug>-link.jpg storia 1080x1920, locandina intera + spazio per lo sticker link
+  media/storia-<slug>.jpg      storia 1080x1920, locandina intera con "link in bio"
   media/reel-<slug>.mp4        reel 10 secondi 1080x1920
 
 Uso: python generate.py [--force slug ...] [--no-reel]
@@ -129,45 +129,41 @@ def page_html(ev, poster, bg, cta, reel=False):
 {"<script>" + REEL_JS + "render(0);</script>" if reel else ""}</body></html>"""
 
 
-STORY_VERSION = "2"   # cambia questo numero per ricreare tutte le storie con un nuovo stile
+STORY_VERSION = "3"   # cambia questo numero per ricreare tutte le storie con un nuovo stile
 
 STORY_CSS = """
 *{margin:0;padding:0;box-sizing:border-box}
 html,body{width:1080px;height:1920px;overflow:hidden;background:#000;font-family:Inter,sans-serif;color:#fff}
-.full{position:absolute;inset:0;background-size:cover;background-position:center}
-.top{position:absolute;left:0;right:0;top:0;height:520px;background:linear-gradient(180deg,rgba(0,0,0,.78),rgba(0,0,0,0))}
-.bot{position:absolute;left:0;right:0;bottom:0;height:1200px;background:linear-gradient(0deg,rgba(0,0,0,.97) 0%,rgba(0,0,0,.93) 45%,rgba(0,0,0,.6) 72%,rgba(0,0,0,0))}
-.brand{position:absolute;left:0;right:0;top:220px;text-align:center}
+.bg{position:absolute;inset:-60px;background-size:cover;background-position:center}
+.brand{position:absolute;left:0;right:0;top:215px;text-align:center}
 .brand span{display:inline-block;font:600 26px/1 Inter;letter-spacing:.32em;text-transform:uppercase;padding:14px 26px;border-radius:999px;background:rgba(0,0,0,.45);border:1px solid rgba(255,255,255,.3)}
-.txt{position:absolute;left:70px;right:70px;text-align:left}
-.date{display:inline-block;font:700 34px/1 'Space Grotesk';letter-spacing:.04em;text-transform:uppercase;padding:16px 24px;border-radius:14px;background:#fff;color:#0a0a0a}
-.name{margin-top:30px;font:700 var(--fs)/0.95 'Space Grotesk';letter-spacing:-.04em;text-transform:uppercase;text-shadow:0 6px 40px rgba(0,0,0,.5)}
-.sub{margin-top:22px;font:600 28px/1.2 Inter;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.75)}
-.venue{margin-top:16px;font:500 40px/1.2 'Space Grotesk';color:rgba(255,255,255,.92)}
-.venue:before{content:"📍 "}
-.cta{margin-top:44px}
+.poster{position:absolute;left:0;width:1080px;object-fit:contain;box-shadow:0 30px 90px rgba(0,0,0,.6)}
+.info{position:absolute;left:40px;right:40px;text-align:center}
+.line{font:600 40px/1.25 'Space Grotesk';letter-spacing:-.01em}
+.line b{font-weight:700}
+.cta{margin-top:34px}
 .cta span{display:inline-block;font:700 40px/1 'Space Grotesk';padding:26px 40px;border-radius:999px;background:#fff;color:#0a0a0a}
-.cta small{display:block;margin-top:18px;font:600 28px/1 Inter;color:rgba(255,255,255,.8)}
+.cta small{display:block;margin-top:18px;font:600 28px/1 Inter;color:rgba(255,255,255,.85)}
 """
 
 
-def story_html(ev, full, variant):
-    name = html.escape(ev.get("name") or ev["slug"])
-    n = max(len(w) for w in name.split()) if name.split() else 10
-    fs = max(78, min(132, int(1000 / max(n, 1) / 0.62), int(118 * 22 / max(len(name), 12))))
-    sub = html.escape(ev.get("sub") or "")
-    sub = "" if sub and sub.lower() in name.lower() else sub
+def story_html(ev, poster, bg, size, variant):
+    """Locandina intera (nessun taglio) a tutta larghezza, sfondo sfocato sopra e sotto."""
+    w, h = size
+    ph = min(1250, round(1080 * h / w))          # altezza della locandina nella storia
+    pw = round(ph * w / h)
+    top = 300 if ph > 1150 else 330
     date, venue = html.escape(ev["date"]), html.escape(ev["venue"])
-    if variant == "link":   # lascia libero il fondo per lo sticker link
-        cta, bottom = '<div class="cta"><span>🎟️ Biglietti qui sotto 👇</span></div>', 430
+    if variant == "link":
+        cta = '<div class="cta"><span>🎟️ Biglietti qui sotto 👇</span></div>'
     else:
-        cta, bottom = '<div class="cta"><span>🎟️ Biglietti · link in bio</span><small>eventdimension.com</small></div>', 260
+        cta = '<div class="cta"><span>🎟️ Biglietti · link in bio</span><small>eventdimension.com</small></div>'
     return f"""<!doctype html><html><head><meta charset="utf-8"><style>{font_css()}{STORY_CSS}</style></head><body>
-<div class="full" style="background-image:url('file://{full}')"></div><div class="top"></div><div class="bot"></div>
+<div class="bg" style="background-image:url('file://{bg}')"></div>
 <div class="brand"><span>Event Dimension</span></div>
-<div class="txt" style="bottom:{bottom}px"><span class="date">{date}</span>
-<div class="name" style="--fs:{fs}px">{name}</div>{f'<div class="sub">{sub}</div>' if sub else ''}
-<div class="venue">{venue}</div>{cta}</div></body></html>"""
+<img class="poster" src="file://{poster}" style="top:{top}px;height:{ph}px;width:{pw}px;left:{(1080 - pw) // 2}px">
+<div class="info" style="top:{top + ph + 50}px"><div class="line"><b>{date}</b> · {venue}</div>{cta}</div>
+</body></html>"""
 
 
 def full_bleed(im, path):
@@ -218,11 +214,9 @@ def build(ev, force=False, reel=True, page=None):
             "link": '<span>🎟️ Biglietti qui sotto 👇</span>',
             "reel": '<span>🎟️ Biglietti · link in bio</span><small>eventdimension.com</small>'}
     tmp = os.path.join(HERE, ".tmp-gen"); os.makedirs(tmp, exist_ok=True)
-    full = os.path.join(SRC, f"{slug}-full.jpg")
-    full_bleed(im, full)
     for k in ("story", "link"):
         if k in need:
-            f = os.path.join(tmp, f"{slug}-{k}.html"); open(f, "w").write(story_html(ev, full, k))
+            f = os.path.join(tmp, f"{slug}-{k}.html"); open(f, "w").write(story_html(ev, src, bg, im.size, k))
             page.goto("file://" + f); page.wait_for_timeout(300)
             page.screenshot(path=outs[k], type="jpeg", quality=88)
     if "story" in need or "link" in need:
