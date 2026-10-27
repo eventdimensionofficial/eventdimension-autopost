@@ -33,9 +33,14 @@ try:
     if "image/jpeg" not in (ct2 or ""): ok = False
 except Exception as e:
     print("Immagini raw NON raggiungibili:", e); ok = False
+try:
+    s3, ct3, b3 = get(base + "/reel-caposile.mp4"); print("Video reel online:", s3, ct3, len(b3) // 1024, "KB")
+    if "video/mp4" not in (ct3 or ""): ok = False
+except Exception as e:
+    print("Video reel NON raggiungibile:", e); ok = False
 # notifica di prova
 topic = os.environ.get("NTFY_TOPIC", "").strip()
-if topic:
+if topic and os.environ.get("SEND_TEST") == "1":
     try:
         body = json.dumps({"topic": topic, "title": "✅ Notifiche Event Dimension attive",
                            "message": "Da ora ricevi qui i promemoria per storie e reel.",
