@@ -1,24 +1,23 @@
-"""Prova diverse vie per scaricare una locandina dal sito (solo test)."""
-import urllib.request, io
+"""Prova: elenca le immagini dalla API WordPress e scarica le più recenti."""
+import urllib.request, io, json
 from PIL import Image
-SRC = "eventdimension.com/wp-content/uploads/2026/08/Monegros-2027-1024x1024-1-optimized.webp"
-UA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/124 Safari/537.36", "Accept": "image/*"}
-tries = {
-  "diretto": "https://" + SRC,
-  "wp-photon i0": "https://i0.wp.com/" + SRC,
-  "wp-photon i2 jpg": "https://i2.wp.com/" + SRC + "?w=1080",
-  "facebook UA": ("https://" + SRC, {"User-Agent": "facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php)"}),
-  "google UA": ("https://" + SRC, {"User-Agent": "Mozilla/5.0 (compatible; Googlebot-Image/1.0)"}),
-  "wordpress API": "https://eventdimension.com/wp-json/wp/v2/media?per_page=1",
-}
-for name, t in tries.items():
-    url, h = (t if isinstance(t, tuple) else (t, UA))
+UA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/124 Safari/537.36"}
+def get(u):
+    with urllib.request.urlopen(urllib.request.Request(u, headers=UA), timeout=30) as r:
+        return r.status, r.headers.get("Content-Type"), r.read()
+_, _, b = get("https://eventdimension.com/wp-json/wp/v2/media?per_page=15&media_type=image&_fields=id,date,source_url,title")
+items = json.loads(b)
+ok = 0
+for it in items:
+    u = it["source_url"]
     try:
-        with urllib.request.urlopen(urllib.request.Request(url, headers=h), timeout=30) as r:
-            b = r.read(); ct = r.headers.get("Content-Type")
-            info = ""
-            if (ct or "").startswith("image/"):
-                info = str(Image.open(io.BytesIO(b)).size)
-            print(f"::notice::{name}: {r.status} {ct} {len(b)}B {info}")
+        s, ct, data = get(u)
+        sz = Image.open(io.BytesIO(data)).size if (ct or "").startswith("image/") else "-"
+        if sz != "-": ok += 1
+        print(f"::notice::{it['date'][:10]} {s} {ct} {sz} {u.rsplit('/',1)[1][:70]}")
     except Exception as e:
-        print(f"::notice::{name}: ERRORE {e}")
+        print(f"::notice::ERRORE {e} {u.rsplit('/',1)[1][:70]}")
+print(f"::notice::Scaricate {ok}/{len(items)}")
+# pagine evento: immagine in evidenza via API
+_, _, b = get("https://eventdimension.com/wp-json/wp/v2/types?_fields=slug,rest_base")
+print("::notice::Tipi contenuto:", ", ".join(f"{k}->{v.get('rest_base')}" for k, v in json.loads(b).items())[:900])
