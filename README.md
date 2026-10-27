@@ -1,0 +1,36 @@
+# Event Dimension – pubblicazione automatica Instagram
+
+Pubblica da solo post, carousel e storie su **@eventdimension_experience**
+all'orario previsto, senza abbonamenti.
+
+## Come funziona
+- `calendar.csv` – il calendario: una riga per contenuto.
+- `media/` – le immagini **JPG** (servite pubblicamente da GitHub Pages).
+- Ogni 10 minuti GitHub Actions avvia `publish.py`: pubblica le righe arrivate
+  all'orario e aggiorna la colonna `status`.
+- Ogni lunedì il token Instagram viene rinnovato da solo.
+
+## Il calendario (`calendar.csv`)
+| colonna | cosa contiene |
+|---|---|
+| id | codice univoco |
+| datetime | `AAAA-MM-GG HH:MM`, ora italiana |
+| type | `STORY`, `POST` o `CAROUSEL` |
+| media | nome del file in `media/` (per il carousel più file separati da `\|`) |
+| caption | testo del post (le storie non hanno testo) |
+| status | `scheduled` → poi `published`, `error` o `skipped` |
+| result / note | ID Instagram o messaggio di errore |
+
+Se un contenuto non riesce a partire entro 6 ore dall'orario viene segnato `skipped`.
+
+## Secrets necessari (Settings → Secrets and variables → Actions)
+- `IG_TOKEN` – token Instagram (long-lived)
+- `IG_USER_ID` – ID dell'account Instagram
+- `GH_PAT` – token GitHub con permesso "Secrets: read and write" su questo repository
+  (serve solo per salvare il token rinnovato)
+
+## Limiti
+- Instagram accetta solo immagini JPG.
+- Gli sticker delle storie (link, sondaggi, conto alla rovescia) non si possono
+  aggiungere via API: vanno messi a mano dall'app.
+- GitHub può avviare i controlli con qualche minuto di ritardo.

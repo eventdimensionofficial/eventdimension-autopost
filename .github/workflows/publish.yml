@@ -1,0 +1,38 @@
+name: Pubblica su Instagram
+
+on:
+  schedule:
+    - cron: "*/10 * * * *"   # ogni 10 minuti (GitHub può ritardare di qualche minuto)
+  workflow_dispatch: {}       # avvio manuale da Actions
+
+permissions:
+  contents: write
+
+concurrency:
+  group: publish
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Pubblica i contenuti in scadenza
+        env:
+          IG_TOKEN: ${{ secrets.IG_TOKEN }}
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+          MEDIA_BASE: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/media
+        run: python publish.py
+      - name: Salva lo stato nel calendario
+        run: |
+          if ! git diff --quiet calendar.csv; then
+            git config user.name "eventdimension-bot"
+            git config user.email "bot@users.noreply.github.com"
+            git add calendar.csv
+            git commit -m "Aggiorna stato pubblicazioni"
+            git pull --rebase
+            git push
+          fi

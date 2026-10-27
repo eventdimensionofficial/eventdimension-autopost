@@ -1,0 +1,30 @@
+name: Rinnova token Instagram
+
+on:
+  schedule:
+    - cron: "17 6 * * 1"   # ogni lunedì
+  workflow_dispatch: {}
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Rinnova
+        id: r
+        env:
+          IG_TOKEN: ${{ secrets.IG_TOKEN }}
+        run: python refresh_token.py
+      - name: Salva il nuovo token nei Secrets
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT }}
+          NEW_TOKEN: ${{ steps.r.outputs.token }}
+        run: |
+          if [ -z "$GH_TOKEN" ]; then
+            echo "GH_PAT non impostato: rinnovo eseguito ma non salvato. Aggiungi il secret GH_PAT."; exit 1
+          fi
+          gh secret set IG_TOKEN --repo "${{ github.repository }}" --body "$NEW_TOKEN"
+          echo "Secret IG_TOKEN aggiornato."

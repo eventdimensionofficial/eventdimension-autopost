@@ -1,0 +1,10 @@
+id,datetime,type,media,caption,status,result,note
+s-0101-1,2026-11-01 13:00,STORY,storia-marco-carola.jpg,,scheduled,,
+s-0101-2,2026-11-01 18:00,STORY,storia-traumer.jpg,,scheduled,,
+s-0101-3,2026-11-01 20:30,STORY,storia-caposile.jpg,,scheduled,,
+s-0102-1,2026-11-02 13:00,STORY,storia-caposile.jpg,,scheduled,,
+s-0102-2,2026-11-02 19:00,STORY,storia-traumer.jpg,,scheduled,,
+s-0102-3,2026-11-02 21:00,STORY,storia-marco-carola.jpg,,scheduled,,
+s-0103-1,2026-11-03 13:00,STORY,storia-caposile.jpg,,scheduled,,
+s-0103-2,2026-11-03 20:30,STORY,storia-novah.jpg,,scheduled,,
+s-0103-3,2026-11-03 22:00,STORY,storia-holy-priest.jpg,,scheduled,,
