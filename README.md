@@ -15,7 +15,7 @@ all'orario previsto, senza abbonamenti.
 |---|---|
 | id | codice univoco |
 | datetime | `AAAA-MM-GG HH:MM`, ora italiana |
-| type | `POST`, `CAROUSEL`, `STORY` (pubblicati in automatico) oppure `REMINDER` (notifica sul telefono con immagine e link, per storie/reel da pubblicare a mano) |
+| type | `POST`, `CAROUSEL`, `REEL` (video MP4, eventuale copertina JPG come secondo file), `STORY` (pubblicati in automatico) oppure `REMINDER` (notifica sul telefono con immagine e link, per storie/reel da pubblicare a mano) |
 | media | nome del file in `media/` (per il carousel più file separati da `\|`) |
 | caption | testo del post (le storie non hanno testo) |
 | status | `scheduled` → poi `published`, `error` o `skipped` |

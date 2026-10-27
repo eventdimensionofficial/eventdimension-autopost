@@ -63,6 +63,10 @@ def is_jpg(u):
     return u.lower().split("?")[0].endswith((".jpg", ".jpeg"))
 
 
+def is_video(u):
+    return u.lower().split("?")[0].endswith((".mp4", ".mov"))
+
+
 def media_url(name):
     """URL pubblico dell'immagine. Le immagini esterne non JPG (webp, png)
     vengono convertite al volo in JPG tramite images.weserv.nl."""
@@ -71,8 +75,8 @@ def media_url(name):
         if is_jpg(name):
             return name
         raise RuntimeError(f"{name}: immagine non JPG non ancora convertita")
-    if not is_jpg(name):
-        raise RuntimeError(f"{name}: i file in media/ devono essere JPG")
+    if not (is_jpg(name) or is_video(name)):
+        raise RuntimeError(f"{name}: i file in media/ devono essere JPG (o MP4 per i reel)")
     return f"{MEDIA_BASE}/{urllib.parse.quote(name)}"
 
 
@@ -149,6 +153,7 @@ def notify(row):
 
 
 def wait_ready(container_id, tries=10, pause=6):
+    """Attende che Instagram abbia elaborato il contenuto (i video richiedono di più)."""
     for _ in range(tries):
         st = api("GET", container_id, {"fields": "status_code"}).get("status_code")
         if st == "FINISHED":
@@ -164,7 +169,10 @@ def container(params):
         log("  [dry-run] crea container", params)
         return "dry-container"
     cid = api("POST", f"{IG_ID}/media", params)["id"]
-    wait_ready(cid)
+    if "video_url" in params:
+        wait_ready(cid, tries=45, pause=10)   # fino a ~7 minuti per i video
+    else:
+        wait_ready(cid)
     return cid
 
 
@@ -186,7 +194,15 @@ def do_row(row):
     if not files:
         raise RuntimeError("nessuna immagine")
 
-    if kind == "STORY":
+    if kind == "REEL":
+        if not is_video(files[0]):
+            raise RuntimeError("un reel richiede un video MP4")
+        params = {"media_type": "REELS", "video_url": media_url(files[0]),
+                  "caption": caption, "share_to_feed": "true"}
+        if len(files) > 1 and is_jpg(files[1]):
+            params["cover_url"] = media_url(files[1])
+        cid = container(params)
+    elif kind == "STORY":
         cid = container({"image_url": media_url(files[0]), "media_type": "STORIES"})
     elif kind == "POST" and len(files) == 1:
         cid = container({"image_url": media_url(files[0]), "caption": caption})

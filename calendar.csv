@@ -1,42 +1,159 @@
 id,datetime,type,media,caption,status,result,note
-s-0101-1,2026-11-01 13:00,REMINDER,storia-marco-carola-link.jpg,"📲 Storia da pubblicare: Marco Carola at Vision · 13 nov, Fabrique Milano
-1) Salva l'immagine  2) Instagram → nuova storia
-3) Sticker LINK: https://ticketdimension.it/evento/marco-carola-at-vision
-4) Extra: cursore emoji 🔥 ""Quanto sei carico per Carola?""",scheduled,,
-s-0101-2,2026-11-01 18:00,REMINDER,storia-traumer-link.jpg,"📲 Storia da pubblicare: Traumer · 14 nov, Amnesia Milano
-1) Salva l'immagine  2) Instagram → nuova storia
-3) Sticker LINK: https://ticketdimension.it/evento/traumer
-4) Extra: conto alla rovescia ""Traumer 14.11""",scheduled,,
-s-0101-3,2026-11-01 20:30,REMINDER,storia-caposile-link.jpg,"📲 Storia da pubblicare: Caposile Festival · 6-8 nov, Verona
-1) Salva l'immagine  2) Instagram → nuova storia
-3) Sticker LINK: https://ticket.eventdimension.com/eventi/crazy-horse-night-presents-caposile-festival-2026/
-4) Extra: conto alla rovescia ""Caposile 6.11""",scheduled,,
-s-0102-1,2026-11-02 13:00,REMINDER,storia-caposile-link.jpg,"📲 Storia da pubblicare: Caposile Festival · 6-8 nov, Verona
-1) Salva l'immagine  2) Instagram → nuova storia
-3) Sticker LINK: https://ticket.eventdimension.com/eventi/crazy-horse-night-presents-caposile-festival-2026/
-4) Extra: conto alla rovescia ""Caposile 6.11""",scheduled,,
-s-0102-2,2026-11-02 19:00,REMINDER,storia-traumer-link.jpg,"📲 Storia da pubblicare: Traumer · 14 nov, Amnesia Milano
-1) Salva l'immagine  2) Instagram → nuova storia
-3) Sticker LINK: https://ticketdimension.it/evento/traumer
-4) Extra: conto alla rovescia ""Traumer 14.11""",scheduled,,
-s-0102-3,2026-11-02 21:00,REMINDER,storia-marco-carola-link.jpg,"📲 Storia da pubblicare: Marco Carola at Vision · 13 nov, Fabrique Milano
-1) Salva l'immagine  2) Instagram → nuova storia
-3) Sticker LINK: https://ticketdimension.it/evento/marco-carola-at-vision
-4) Extra: cursore emoji 🔥 ""Quanto sei carico per Carola?""",scheduled,,
-s-0103-1,2026-11-03 13:00,REMINDER,storia-caposile-link.jpg,"📲 Storia da pubblicare: Caposile Festival · 6-8 nov, Verona
-1) Salva l'immagine  2) Instagram → nuova storia
-3) Sticker LINK: https://ticket.eventdimension.com/eventi/crazy-horse-night-presents-caposile-festival-2026/
-4) Extra: conto alla rovescia ""Caposile 6.11""",scheduled,,
-s-0103-2,2026-11-03 20:30,REMINDER,storia-novah-link.jpg,"📲 Storia da pubblicare: NOVAH · 14 nov, Terminal 1 Roma
-1) Salva l'immagine  2) Instagram → nuova storia
-3) Sticker LINK: https://ticketdimension.it/evento/novah-terminal-1-co-cinecitta-world
-4) Extra: sondaggio ""Ci sei? 🔥 Sì / 👀 Forse""",scheduled,,
-s-0103-3,2026-11-03 22:00,REMINDER,storia-holy-priest-link.jpg,"📲 Storia da pubblicare: Holy Priest · 4 dic, Fabrique Milano
-1) Salva l'immagine  2) Instagram → nuova storia
-3) Sticker LINK: https://ticket.eventdimension.com/eventi/holy-priest/
-4) Extra: domanda ""Con chi vieni? 👇""",scheduled,,
 test-caposile,2026-10-27 22:58,STORY,storia-caposile.jpg,,published,17916359817532998,ok 27/10 22:58
 test-notifica,2026-10-27 23:32,REMINDER,storia-caposile-link.jpg,"📲 PROVA – Storia da pubblicare: Caposile Festival · 6-8 nov, Verona
 1) Salva l'immagine  2) Instagram → nuova storia
 3) Sticker LINK: https://ticket.eventdimension.com/eventi/crazy-horse-night-presents-caposile-festival-2026/
 4) Extra: conto alla rovescia ""Caposile 6.11""",published,Vf38sfGRjIb4,ok 27/10 23:32
+s-1028-1,2026-10-28 11:30,REMINDER,storia-monsterland-link.jpg,"📲 Storia da pubblicare: Monsterland Halloween Festival · 31 ott, Autodromo di Imola
+1) Salva l'immagine  2) Instagram → nuova storia
+3) Sticker LINK: https://eventdimension.com/monsterland-halloween-festival-31-10-2026-autodromo-di-imola-ticket-pacchetti-hotel-biglietti-navette
+4) Extra: conto alla rovescia ""Monsterland 31.10""",scheduled,,
+s-1028-2,2026-10-28 14:00,REMINDER,storia-leon-amnesia-link.jpg,"📲 Storia da pubblicare: Halloween Night con Leon · 31 ott, Amnesia Milano
+1) Salva l'immagine  2) Instagram → nuova storia
+3) Sticker LINK: https://ticket.eventdimension.com/eventi/halloween-night-w-leon-amnesia-milano/
+4) Extra: sondaggio ""Halloween dove? 🖤 Amnesia / 🎃 Monsterland""",scheduled,,
+s-1028-3,2026-10-28 18:00,REMINDER,storia-monsterland-link.jpg,"📲 Storia da pubblicare: Monsterland Halloween Festival · 31 ott, Autodromo di Imola
+1) Salva l'immagine  2) Instagram → nuova storia
+3) Sticker LINK: https://eventdimension.com/monsterland-halloween-festival-31-10-2026-autodromo-di-imola-ticket-pacchetti-hotel-biglietti-navette
+4) Extra: sondaggio ""Ci sei a Monsterland? 🎃 Sì / 👻 Forse""",scheduled,,
+s-1028-4,2026-10-28 20:30,REMINDER,storia-random-muretto-link.jpg,"📲 Storia da pubblicare: Happy Halloween – Random · 31 ott, ilMuretto Jesolo
+1) Salva l'immagine  2) Instagram → nuova storia
+3) Sticker LINK: https://ticket.eventdimension.com/eventi/happy-halloween-random-una-festa-a-caso/
+4) Extra: domanda ""Chi viene al Muretto? 👇""",scheduled,,
+s-1028-5,2026-10-28 22:30,REMINDER,storia-caposile-link.jpg,"📲 Storia da pubblicare: Caposile Festival · 6-8 nov, Verona
+1) Salva l'immagine  2) Instagram → nuova storia
+3) Sticker LINK: https://ticket.eventdimension.com/eventi/crazy-horse-night-presents-caposile-festival-2026/
+4) Extra: conto alla rovescia ""Caposile 6.11""",scheduled,,
+s-1029-1,2026-10-29 11:30,REMINDER,storia-monsterland-link.jpg,"📲 Storia da pubblicare: Monsterland Halloween Festival · 31 ott, Autodromo di Imola
+1) Salva l'immagine  2) Instagram → nuova storia
+3) Sticker LINK: https://eventdimension.com/monsterland-halloween-festival-31-10-2026-autodromo-di-imola-ticket-pacchetti-hotel-biglietti-navette
+4) Extra: domanda ""Che costume porti? 👇""",scheduled,,
+s-1029-2,2026-10-29 14:00,REMINDER,storia-random-muretto-link.jpg,"📲 Storia da pubblicare: Happy Halloween – Random · 31 ott, ilMuretto Jesolo
+1) Salva l'immagine  2) Instagram → nuova storia
+3) Sticker LINK: https://ticket.eventdimension.com/eventi/happy-halloween-random-una-festa-a-caso/
+4) Extra: sondaggio ""Random o Monsterland?""",scheduled,,
+s-1029-3,2026-10-29 18:00,REMINDER,storia-leon-amnesia-link.jpg,"📲 Storia da pubblicare: Halloween Night con Leon · 31 ott, Amnesia Milano
+1) Salva l'immagine  2) Instagram → nuova storia
+3) Sticker LINK: https://ticket.eventdimension.com/eventi/halloween-night-w-leon-amnesia-milano/
+4) Extra: conto alla rovescia ""Leon @ Amnesia""",scheduled,,
+s-1029-4,2026-10-29 20:30,REMINDER,storia-monsterland-link.jpg,"📲 Storia da pubblicare: Monsterland Halloween Festival · 31 ott, Autodromo di Imola
+1) Salva l'immagine  2) Instagram → nuova storia
+3) Sticker LINK: https://eventdimension.com/monsterland-halloween-festival-31-10-2026-autodromo-di-imola-ticket-pacchetti-hotel-biglietti-navette
+4) Extra: cursore emoji 🎃 ""Quanto sei carico?""",scheduled,,
+s-1029-5,2026-10-29 22:30,REMINDER,storia-caposile-link.jpg,"📲 Storia da pubblicare: Caposile Festival · 6-8 nov, Verona
+1) Salva l'immagine  2) Instagram → nuova storia
+3) Sticker LINK: https://ticket.eventdimension.com/eventi/crazy-horse-night-presents-caposile-festival-2026/
+4) Extra: domanda ""Con chi vieni a Verona? 👇""",scheduled,,
+s-1030-1,2026-10-30 11:30,REMINDER,storia-monsterland-link.jpg,"📲 Storia da pubblicare: Monsterland Halloween Festival · 31 ott, Autodromo di Imola
+1) Salva l'immagine  2) Instagram → nuova storia
+3) Sticker LINK: https://eventdimension.com/monsterland-halloween-festival-31-10-2026-autodromo-di-imola-ticket-pacchetti-hotel-biglietti-navette
+4) Extra: conto alla rovescia ""Monsterland 31.10""",scheduled,,
+s-1030-2,2026-10-30 14:00,REMINDER,storia-leon-amnesia-link.jpg,"📲 Storia da pubblicare: Halloween Night con Leon · 31 ott, Amnesia Milano
+1) Salva l'immagine  2) Instagram → nuova storia
+3) Sticker LINK: https://ticket.eventdimension.com/eventi/halloween-night-w-leon-amnesia-milano/
+4) Extra: cursore emoji 🔥",scheduled,,
+s-1030-3,2026-10-30 18:00,REMINDER,storia-random-muretto-link.jpg,"📲 Storia da pubblicare: Happy Halloween – Random · 31 ott, ilMuretto Jesolo
+1) Salva l'immagine  2) Instagram → nuova storia
+3) Sticker LINK: https://ticket.eventdimension.com/eventi/happy-halloween-random-una-festa-a-caso/
+4) Extra: cursore emoji 👻",scheduled,,
+r-1030-1,2026-10-30 19:00,REEL,reel-monsterland.mp4|post-monsterland.jpg,"🎃 Domani è MONSTERLAND
+31.10 · Autodromo di Imola
+
+Il festival di Halloween ti aspetta: biglietti, pacchetti hotel e navette su eventdimension.com 🔗 link in bio
+
+#Monsterland #Halloween2026 #Imola #festival #eventdimension",scheduled,,
+s-1030-4,2026-10-30 20:30,REMINDER,storia-monsterland-link.jpg,"📲 Storia da pubblicare: Monsterland Halloween Festival · 31 ott, Autodromo di Imola
+1) Salva l'immagine  2) Instagram → nuova storia
+3) Sticker LINK: https://eventdimension.com/monsterland-halloween-festival-31-10-2026-autodromo-di-imola-ticket-pacchetti-hotel-biglietti-navette
+4) Extra: ""DOMANI 🎃"" + conto alla rovescia",scheduled,,
+s-1030-5,2026-10-30 22:30,REMINDER,storia-caposile-link.jpg,"📲 Storia da pubblicare: Caposile Festival · 6-8 nov, Verona
+1) Salva l'immagine  2) Instagram → nuova storia
+3) Sticker LINK: https://ticket.eventdimension.com/eventi/crazy-horse-night-presents-caposile-festival-2026/
+4) Extra: sondaggio ""Quanti giorni fai? 1 / 3""",scheduled,,
+s-1031-1,2026-10-31 11:30,REMINDER,storia-monsterland-link.jpg,"📲 Storia da pubblicare: Monsterland Halloween Festival · 31 ott, Autodromo di Imola
+1) Salva l'immagine  2) Instagram → nuova storia
+3) Sticker LINK: https://eventdimension.com/monsterland-halloween-festival-31-10-2026-autodromo-di-imola-ticket-pacchetti-hotel-biglietti-navette
+4) Extra: ""OGGI SI PARTE 🎃""",scheduled,,
+s-1031-2,2026-10-31 14:00,REMINDER,storia-leon-amnesia-link.jpg,"📲 Storia da pubblicare: Halloween Night con Leon · 31 ott, Amnesia Milano
+1) Salva l'immagine  2) Instagram → nuova storia
+3) Sticker LINK: https://ticket.eventdimension.com/eventi/halloween-night-w-leon-amnesia-milano/
+4) Extra: sondaggio ""Halloween dove? 🖤 Amnesia / 🎃 Monsterland""",scheduled,,
+s-1031-3,2026-10-31 18:00,REMINDER,storia-monsterland-link.jpg,"📲 Storia da pubblicare: Monsterland Halloween Festival · 31 ott, Autodromo di Imola
+1) Salva l'immagine  2) Instagram → nuova storia
+3) Sticker LINK: https://eventdimension.com/monsterland-halloween-festival-31-10-2026-autodromo-di-imola-ticket-pacchetti-hotel-biglietti-navette
+4) Extra: cursore emoji 🎃 ""Quanto sei carico?""",scheduled,,
+s-1031-4,2026-10-31 20:30,REMINDER,storia-random-muretto-link.jpg,"📲 Storia da pubblicare: Happy Halloween – Random · 31 ott, ilMuretto Jesolo
+1) Salva l'immagine  2) Instagram → nuova storia
+3) Sticker LINK: https://ticket.eventdimension.com/eventi/happy-halloween-random-una-festa-a-caso/
+4) Extra: domanda ""Chi viene al Muretto? 👇""",scheduled,,
+s-1031-5,2026-10-31 22:30,REMINDER,storia-monsterland-link.jpg,"📲 Storia da pubblicare: Monsterland Halloween Festival · 31 ott, Autodromo di Imola
+1) Salva l'immagine  2) Instagram → nuova storia
+3) Sticker LINK: https://eventdimension.com/monsterland-halloween-festival-31-10-2026-autodromo-di-imola-ticket-pacchetti-hotel-biglietti-navette
+4) Extra: ""STASERA 🔥 ultimi biglietti""",scheduled,,
+s-1101-1,2026-11-01 11:30,REMINDER,storia-caposile-link.jpg,"📲 Storia da pubblicare: Caposile Festival · 6-8 nov, Verona
+1) Salva l'immagine  2) Instagram → nuova storia
+3) Sticker LINK: https://ticket.eventdimension.com/eventi/crazy-horse-night-presents-caposile-festival-2026/
+4) Extra: cursore emoji 🔥",scheduled,,
+s-1101-2,2026-11-01 14:00,REMINDER,storia-marco-carola-link.jpg,"📲 Storia da pubblicare: Marco Carola at Vision · 13 nov, Fabrique Milano
+1) Salva l'immagine  2) Instagram → nuova storia
+3) Sticker LINK: https://ticketdimension.it/evento/marco-carola-at-vision
+4) Extra: cursore emoji 🔥 ""Quanto sei carico per Carola?""",scheduled,,
+s-1101-3,2026-11-01 18:00,REMINDER,storia-traumer-link.jpg,"📲 Storia da pubblicare: Traumer · 14 nov, Amnesia Milano
+1) Salva l'immagine  2) Instagram → nuova storia
+3) Sticker LINK: https://ticketdimension.it/evento/traumer
+4) Extra: conto alla rovescia ""Traumer 14.11""",scheduled,,
+s-1101-4,2026-11-01 20:30,REMINDER,storia-caposile-link.jpg,"📲 Storia da pubblicare: Caposile Festival · 6-8 nov, Verona
+1) Salva l'immagine  2) Instagram → nuova storia
+3) Sticker LINK: https://ticket.eventdimension.com/eventi/crazy-horse-night-presents-caposile-festival-2026/
+4) Extra: conto alla rovescia ""Caposile 6.11""",scheduled,,
+s-1101-5,2026-11-01 22:30,REMINDER,storia-novah-link.jpg,"📲 Storia da pubblicare: NOVAH · 14 nov, Terminal 1 Cinecittà World Roma
+1) Salva l'immagine  2) Instagram → nuova storia
+3) Sticker LINK: https://ticketdimension.it/evento/novah-terminal-1-co-cinecitta-world
+4) Extra: sondaggio ""Roma ci sei? 🔥 Sì / 👀 Forse""",scheduled,,
+s-1102-1,2026-11-02 11:30,REMINDER,storia-caposile-link.jpg,"📲 Storia da pubblicare: Caposile Festival · 6-8 nov, Verona
+1) Salva l'immagine  2) Instagram → nuova storia
+3) Sticker LINK: https://ticket.eventdimension.com/eventi/crazy-horse-night-presents-caposile-festival-2026/
+4) Extra: domanda ""Con chi vieni a Verona? 👇""",scheduled,,
+s-1102-2,2026-11-02 14:00,REMINDER,storia-traumer-link.jpg,"📲 Storia da pubblicare: Traumer · 14 nov, Amnesia Milano
+1) Salva l'immagine  2) Instagram → nuova storia
+3) Sticker LINK: https://ticketdimension.it/evento/traumer
+4) Extra: sondaggio ""Ci sei? ✅ Sì / 👀 Forse""",scheduled,,
+s-1102-3,2026-11-02 18:00,REMINDER,storia-marco-carola-link.jpg,"📲 Storia da pubblicare: Marco Carola at Vision · 13 nov, Fabrique Milano
+1) Salva l'immagine  2) Instagram → nuova storia
+3) Sticker LINK: https://ticketdimension.it/evento/marco-carola-at-vision
+4) Extra: conto alla rovescia ""Carola 13.11""",scheduled,,
+r-1102-1,2026-11-02 19:00,REEL,reel-caposile.mp4|post-caposile.jpg,"🐎 Crazy Horse Night presents CAPOSILE FESTIVAL
+6 · 7 · 8 novembre · Gallerie Mercatali, Verona
+3 days full experience 🔥
+
+Biglietti su eventdimension.com 🔗 link in bio
+
+#Caposile #Verona #festival #techno #eventdimension",scheduled,,
+s-1102-4,2026-11-02 20:30,REMINDER,storia-holy-priest-link.jpg,"📲 Storia da pubblicare: Holy Priest · 4 dic, Fabrique Milano
+1) Salva l'immagine  2) Instagram → nuova storia
+3) Sticker LINK: https://ticket.eventdimension.com/eventi/holy-priest/
+4) Extra: domanda ""Con chi vieni? 👇""",scheduled,,
+s-1102-5,2026-11-02 22:30,REMINDER,storia-caposile-link.jpg,"📲 Storia da pubblicare: Caposile Festival · 6-8 nov, Verona
+1) Salva l'immagine  2) Instagram → nuova storia
+3) Sticker LINK: https://ticket.eventdimension.com/eventi/crazy-horse-night-presents-caposile-festival-2026/
+4) Extra: sondaggio ""Quanti giorni fai? 1 / 3""",scheduled,,
+s-1103-1,2026-11-03 11:30,REMINDER,storia-caposile-link.jpg,"📲 Storia da pubblicare: Caposile Festival · 6-8 nov, Verona
+1) Salva l'immagine  2) Instagram → nuova storia
+3) Sticker LINK: https://ticket.eventdimension.com/eventi/crazy-horse-night-presents-caposile-festival-2026/
+4) Extra: cursore emoji 🔥",scheduled,,
+s-1103-2,2026-11-03 14:00,REMINDER,storia-marco-carola-link.jpg,"📲 Storia da pubblicare: Marco Carola at Vision · 13 nov, Fabrique Milano
+1) Salva l'immagine  2) Instagram → nuova storia
+3) Sticker LINK: https://ticketdimension.it/evento/marco-carola-at-vision
+4) Extra: domanda ""Che traccia vuoi sentire? 👇""",scheduled,,
+s-1103-3,2026-11-03 18:00,REMINDER,storia-novah-link.jpg,"📲 Storia da pubblicare: NOVAH · 14 nov, Terminal 1 Cinecittà World Roma
+1) Salva l'immagine  2) Instagram → nuova storia
+3) Sticker LINK: https://ticketdimension.it/evento/novah-terminal-1-co-cinecitta-world
+4) Extra: cursore emoji ⚡",scheduled,,
+s-1103-4,2026-11-03 20:30,REMINDER,storia-traumer-link.jpg,"📲 Storia da pubblicare: Traumer · 14 nov, Amnesia Milano
+1) Salva l'immagine  2) Instagram → nuova storia
+3) Sticker LINK: https://ticketdimension.it/evento/traumer
+4) Extra: conto alla rovescia ""Traumer 14.11""",scheduled,,
+s-1103-5,2026-11-03 22:30,REMINDER,storia-holy-priest-link.jpg,"📲 Storia da pubblicare: Holy Priest · 4 dic, Fabrique Milano
+1) Salva l'immagine  2) Instagram → nuova storia
+3) Sticker LINK: https://ticket.eventdimension.com/eventi/holy-priest/
+4) Extra: conto alla rovescia ""Holy Priest 4.12""",scheduled,,
