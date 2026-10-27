@@ -83,6 +83,32 @@ def media_url(name):
 REPO = os.environ.get("GITHUB_REPOSITORY", "")
 
 
+def fetch_image(url):
+    """Scarica un'immagine; se il sito risponde con una pagina anti-bot usa un vero browser."""
+    try:
+        req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/124 Safari/537.36",
+                                                   "Accept": "image/avif,image/webp,image/*,*/*"})
+        with urllib.request.urlopen(req, timeout=60) as r:
+            if (r.headers.get("Content-Type") or "").startswith("image/"):
+                return r.read()
+    except Exception as e:
+        log("  download diretto fallito:", e)
+    from playwright.sync_api import sync_playwright
+    with sync_playwright() as p:
+        b = p.chromium.launch()
+        pg = b.new_page()
+        data = None
+        for _ in range(3):
+            resp = pg.goto(url, wait_until="networkidle", timeout=60000)
+            if resp and (resp.headers.get("content-type") or "").startswith("image/"):
+                data = resp.body(); break
+            pg.wait_for_timeout(4000)
+        b.close()
+    if not data:
+        raise RuntimeError("il sito non ha restituito un'immagine")
+    return data
+
+
 def localize(url):
     """Scarica un'immagine esterna non JPG (webp, png...), la converte in JPG
     dentro media/ext/ e restituisce l'URL raw di GitHub (disponibile subito dopo il push)."""
@@ -92,9 +118,7 @@ def localize(url):
     rel = f"media/ext/{h}.jpg"
     path = os.path.join(HERE, rel)
     if not os.path.exists(path):
-        req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0 (EventDimension autopost)"})
-        with urllib.request.urlopen(req, timeout=60) as r:
-            data = r.read()
+        data = fetch_image(url)
         im = Image.open(io.BytesIO(data)).convert("RGB")
         if max(im.size) > 1440:
             im.thumbnail((1440, 1440))
@@ -108,6 +132,8 @@ def prepare(rows):
     changed, fresh = False, set()
     for row in rows:
         if row.get("status", "").strip().lower() not in ("", "scheduled"):
+            continue
+        if row.get("type", "").strip().upper() == "REMINDER":
             continue
         parts = [m.strip() for m in (row.get("media") or "").split("|") if m.strip()]
         new = []
@@ -140,9 +166,10 @@ def notify(row):
         msg["click"] = links[0]
         msg["actions"].append({"action": "view", "label": "Biglietti", "url": links[0]})
     if files:
-        img = media_url(files[0])
+        f0 = files[0].strip()
+        img = f0 if f0.startswith(("http://", "https://")) else media_url(f0)
         msg["attach"] = img
-        msg["actions"].append({"action": "view", "label": "Immagine", "url": img})
+        msg["actions"].append({"action": "view", "label": "Video" if is_video(img) else "Immagine", "url": img})
     if DRY:
         log("  [dry-run] notifica", json.dumps(msg, ensure_ascii=False))
         return "dry-notify"

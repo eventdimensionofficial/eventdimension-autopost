@@ -31,6 +31,29 @@ try:
     if "video/mp4" not in (ct3 or ""): ok = False
 except Exception as e:
     print("Video reel NON raggiungibile:", e); ok = False
+if os.environ.get("TEST_SITE") == "1":
+    import importlib.util, io
+    spec = importlib.util.spec_from_file_location("pub", "publish.py"); pub = importlib.util.module_from_spec(spec); spec.loader.exec_module(pub)
+    try:
+        data = pub.fetch_image("https://eventdimension.com/wp-content/uploads/2026/08/Monegros-2027-1024x1024-1-optimized.webp")
+        from PIL import Image
+        print("Conversione locandina sito OK:", Image.open(io.BytesIO(data)).size)
+    except Exception as e:
+        print("Conversione locandina sito FALLITA:", e); ok = False
+    try:
+        q = urllib.parse.urlencode({"image_url": "https://eventdimension.com/wp-content/uploads/2026/07/Crazy-Horse-Night-Presents-Caposile-Festival-2026-optimized.jpg", "access_token": tok}).encode()
+        with urllib.request.urlopen(urllib.request.Request(f"https://graph.instagram.com/v26.0/{uid}/media", data=q), timeout=60) as r:
+            cid = json.loads(r.read())["id"]
+        import time
+        for _ in range(10):
+            q2 = urllib.parse.urlencode({"fields": "status_code", "access_token": tok})
+            st = json.loads(get(f"https://graph.instagram.com/v26.0/{cid}?" + q2)[2]).get("status_code")
+            if st in ("FINISHED", "ERROR"): break
+            time.sleep(5)
+        print("Instagram legge jpg dal sito:", st, "(non pubblicato)")
+        if st != "FINISHED": ok = False
+    except urllib.error.HTTPError as e:
+        print("Instagram NON legge jpg dal sito:", e.read().decode(errors="replace")[:300]); ok = False
 # notifica di prova
 topic = os.environ.get("NTFY_TOPIC", "").strip()
 if topic and os.environ.get("SEND_TEST") == "1":

@@ -22,6 +22,11 @@ jobs:
         with:
           python-version: "3.12"
       - run: pip install --quiet pillow
+      - name: Browser per scaricare le locandine (solo se servono conversioni)
+        run: |
+          if python -c "import csv,sys; rows=[r for r in csv.DictReader(open('calendar.csv',encoding='utf-8')) if r['status'] in ('','scheduled') and r['type'].upper()!='REMINDER']; sys.exit(0 if any(m.strip().startswith('http') and not m.strip().lower().split('?')[0].endswith(('.jpg','.jpeg','.mp4')) for r in rows for m in r['media'].split('|')) else 1)"; then
+            pip install --quiet playwright && python -m playwright install --with-deps chromium
+          fi
       - name: Pubblica i contenuti in scadenza
         env:
           IG_TOKEN: ${{ secrets.IG_TOKEN }}
