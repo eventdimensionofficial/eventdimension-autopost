@@ -182,8 +182,9 @@ def img_container(f, extra):
     raise RuntimeError(f"nessuna versione JPG leggibile per {f}: {last}")
 
 
-def notify(row):
-    """Promemoria sul telefono (app ntfy) per storie/reel da pubblicare a mano."""
+def notify(row, at=None):
+    """Promemoria sul telefono (app ntfy) per storie/reel da pubblicare a mano.
+    Con `at` il messaggio viene consegnato da ntfy esattamente a quell'ora (max 3 giorni)."""
     if not NTFY_TOPIC:
         raise RuntimeError("NTFY_TOPIC non impostato")
     text = (row.get("caption") or "").strip()
@@ -201,6 +202,8 @@ def notify(row):
         img = f0 if f0.startswith(("http://", "https://")) else media_url(f0)
         msg["attach"] = img
         msg["actions"].append({"action": "view", "label": "Video" if is_video(img) else "Immagine", "url": img})
+    if at is not None:
+        msg["delay"] = str(int(at.timestamp()))
     if DRY:
         log("  [dry-run] notifica", json.dumps(msg, ensure_ascii=False))
         return "dry-notify"
@@ -303,6 +306,15 @@ def main():
             changed = True
             continue
         if when > now:
+            # i promemoria delle prossime 60 ore vengono affidati subito a ntfy con orario esatto
+            if row["type"].strip().upper() == "REMINDER" and when - now <= timedelta(hours=60):
+                try:
+                    nid = notify(row, at=when)
+                    row["status"], row["result"], row["note"] = "queued", nid, f"consegna programmata {when:%d/%m %H:%M}"
+                    log("PROGRAMMATO", row["id"], row["datetime"])
+                except Exception as e:
+                    log("  ERRORE programmazione", row["id"], e)
+                changed = True
             continue
         if now - when > MAX_LATE:
             row["status"], row["note"] = "skipped", f"troppo in ritardo ({now:%d/%m %H:%M})"
