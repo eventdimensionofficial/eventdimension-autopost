@@ -5,6 +5,9 @@ base = os.environ.get("MEDIA_BASE", "").rstrip("/")
 def get(url):
     with urllib.request.urlopen(url, timeout=30) as r: return r.status, r.headers.get("Content-Type"), r.read()
 ok = True
+_print = print
+def print(*a):
+    _print(*a); _print("::notice::" + " ".join(str(x) for x in a))
 try:
     q = urllib.parse.urlencode({"fields": "user_id,username,account_type", "access_token": tok})
     _, _, b = get("https://graph.instagram.com/v26.0/me?" + q)
