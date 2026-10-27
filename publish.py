@@ -117,8 +117,8 @@ def do_row(row):
 
 def main():
     if not DRY and not (TOKEN and IG_ID and MEDIA_BASE):
-        log("Mancano IG_TOKEN, IG_USER_ID o MEDIA_BASE: niente da fare.")
-        return 1
+        log("Mancano IG_TOKEN, IG_USER_ID o MEDIA_BASE: configura i Secrets. Niente da fare per ora.")
+        return 0
     with open(CAL, newline="", encoding="utf-8") as f:
         rows = list(csv.DictReader(f))
     now = datetime.now(TZ)
