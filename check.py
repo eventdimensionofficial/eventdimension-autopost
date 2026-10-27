@@ -20,13 +20,6 @@ try:
     s, ct, _ = get(base + "/storia-caposile.jpg"); print("Immagini online:", s, ct)
 except Exception as e:
     print("Immagini NON raggiungibili:", e); ok = False
-# download locandina webp dal sito (per la conversione in JPG)
-try:
-    u = "https://eventdimension.com/wp-content/uploads/2026/08/Monegros-2027-1024x1024-1-optimized.webp"
-    req = urllib.request.Request(u, headers={"User-Agent": "Mozilla/5.0 (EventDimension autopost)"})
-    with urllib.request.urlopen(req, timeout=30) as r: print("Locandina sito:", r.status, r.headers.get("Content-Type"))
-except Exception as e:
-    print("Locandina sito NON scaricabile:", e); ok = False
 try:
     s2, ct2, _ = get("https://raw.githubusercontent.com/" + os.environ.get("GITHUB_REPOSITORY", "") + "/main/media/post-caposile.jpg")
     print("Immagini raw:", s2, ct2)
@@ -49,6 +42,6 @@ if topic and os.environ.get("SEND_TEST") == "1":
         urllib.request.urlopen(req, timeout=30); print("Notifica di prova inviata")
     except Exception as e:
         print("Notifica NON inviata:", e); ok = False
-else:
+elif not topic:
     print("NTFY_TOPIC non impostato")
 print("TUTTO OK" if ok else "CI SONO PROBLEMI"); raise SystemExit(0 if ok else 1)
