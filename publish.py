@@ -138,7 +138,7 @@ def prepare(rows):
         parts = [m.strip() for m in (row.get("media") or "").split("|") if m.strip()]
         new = []
         for m in parts:
-            if m.startswith(("http://", "https://")) and not is_jpg(m):
+            if m.startswith(("http://", "https://")) and not is_jpg(m) and not is_video(m) and "eventdimension.com" not in m:
                 try:
                     m2 = localize(m)
                     log("CONVERTITA", m, "->", m2)
@@ -149,6 +149,37 @@ def prepare(rows):
             new.append(m)
         row["media"] = "|".join(new)
     return changed, fresh
+
+
+def candidates(url):
+    """Per immagini esterne non JPG (es. -optimized.webp di WordPress) prova le versioni JPG originali."""
+    u = url.strip()
+    if is_jpg(u):
+        return [u]
+    base = u.split("?")[0].rsplit(".", 1)[0]
+    out = []
+    for b in (base, re.sub(r"-optimized$", "", base), re.sub(r"-\d+x\d+(-\d+)?(-optimized)?$", "", base)):
+        for ext in (".jpg", ".jpeg"):
+            if b + ext not in out:
+                out.append(b + ext)
+    return out
+
+
+def img_container(f, extra):
+    """Crea il container per un'immagine provando, se serve, le versioni JPG alternative."""
+    f = f.strip()
+    if not f.startswith(("http://", "https://")):
+        return container({**extra, "image_url": media_url(f)})
+    last = None
+    for u in candidates(f):
+        try:
+            cid = container({**extra, "image_url": u})
+            if u != f:
+                log("  usata versione JPG:", u)
+            return cid
+        except Exception as e:
+            last = e
+    raise RuntimeError(f"nessuna versione JPG leggibile per {f}: {last}")
 
 
 def notify(row):
@@ -230,13 +261,13 @@ def do_row(row):
             params["cover_url"] = media_url(files[1])
         cid = container(params)
     elif kind == "STORY":
-        cid = container({"image_url": media_url(files[0]), "media_type": "STORIES"})
+        cid = img_container(files[0], {"media_type": "STORIES"})
     elif kind == "POST" and len(files) == 1:
-        cid = container({"image_url": media_url(files[0]), "caption": caption})
+        cid = img_container(files[0], {"caption": caption})
     elif kind in ("POST", "CAROUSEL"):
         if len(files) < 2:
             raise RuntimeError("un carousel serve almeno 2 immagini")
-        children = [container({"image_url": media_url(f), "is_carousel_item": "true"}) for f in files[:20]]
+        children = [img_container(f, {"is_carousel_item": "true"}) for f in files[:20]]
         cid = container({"media_type": "CAROUSEL", "children": ",".join(children), "caption": caption})
     else:
         raise RuntimeError(f"tipo sconosciuto: {kind}")

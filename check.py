@@ -34,12 +34,17 @@ except Exception as e:
 if os.environ.get("TEST_SITE") == "1":
     import importlib.util, io
     spec = importlib.util.spec_from_file_location("pub", "publish.py"); pub = importlib.util.module_from_spec(spec); spec.loader.exec_module(pub)
-    try:
-        data = pub.fetch_image("https://eventdimension.com/wp-content/uploads/2026/08/Monegros-2027-1024x1024-1-optimized.webp")
-        from PIL import Image
-        print("Conversione locandina sito OK:", Image.open(io.BytesIO(data)).size)
-    except Exception as e:
-        print("Conversione locandina sito FALLITA:", e); ok = False
+    for webp in ["https://eventdimension.com/wp-content/uploads/2026/08/Monegros-2027-1024x1024-1-optimized.webp",
+                 "https://eventdimension.com/wp-content/uploads/2026/09/Leon-Extended-set-Amnesia-Milao-31-ottobre-2026-optimized.webp"]:
+        found = None
+        for u in pub.candidates(webp):
+            q = urllib.parse.urlencode({"image_url": u, "access_token": tok}).encode()
+            try:
+                with urllib.request.urlopen(urllib.request.Request(f"https://graph.instagram.com/v26.0/{uid}/media", data=q), timeout=60) as r:
+                    found = u; break
+            except urllib.error.HTTPError:
+                pass
+        print("Versione JPG per", webp.rsplit("/", 1)[1], "->", found or "NESSUNA")
     try:
         q = urllib.parse.urlencode({"image_url": "https://eventdimension.com/wp-content/uploads/2026/07/Crazy-Horse-Night-Presents-Caposile-Festival-2026-optimized.jpg", "access_token": tok}).encode()
         with urllib.request.urlopen(urllib.request.Request(f"https://graph.instagram.com/v26.0/{uid}/media", data=q), timeout=60) as r:
