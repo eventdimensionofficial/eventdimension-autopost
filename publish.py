@@ -70,11 +70,55 @@ def media_url(name):
     if name.startswith("http://") or name.startswith("https://"):
         if is_jpg(name):
             return name
-        bare = name.split("://", 1)[1]
-        return "https://images.weserv.nl/?" + urllib.parse.urlencode({"url": bare, "output": "jpg", "q": "90"})
+        raise RuntimeError(f"{name}: immagine non JPG non ancora convertita")
     if not is_jpg(name):
         raise RuntimeError(f"{name}: i file in media/ devono essere JPG")
     return f"{MEDIA_BASE}/{urllib.parse.quote(name)}"
+
+
+REPO = os.environ.get("GITHUB_REPOSITORY", "")
+
+
+def localize(url):
+    """Scarica un'immagine esterna non JPG (webp, png...), la converte in JPG
+    dentro media/ext/ e restituisce l'URL raw di GitHub (disponibile subito dopo il push)."""
+    import hashlib, io
+    from PIL import Image
+    h = hashlib.sha1(url.encode()).hexdigest()[:12]
+    rel = f"media/ext/{h}.jpg"
+    path = os.path.join(HERE, rel)
+    if not os.path.exists(path):
+        req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0 (EventDimension autopost)"})
+        with urllib.request.urlopen(req, timeout=60) as r:
+            data = r.read()
+        im = Image.open(io.BytesIO(data)).convert("RGB")
+        if max(im.size) > 1440:
+            im.thumbnail((1440, 1440))
+        os.makedirs(os.path.dirname(path), exist_ok=True)
+        im.save(path, "JPEG", quality=90)
+    return f"https://raw.githubusercontent.com/{REPO}/main/{rel}"
+
+
+def prepare(rows):
+    """Converte in anticipo le immagini esterne non JPG delle righe in programma."""
+    changed, fresh = False, set()
+    for row in rows:
+        if row.get("status", "").strip().lower() not in ("", "scheduled"):
+            continue
+        parts = [m.strip() for m in (row.get("media") or "").split("|") if m.strip()]
+        new = []
+        for m in parts:
+            if m.startswith(("http://", "https://")) and not is_jpg(m):
+                try:
+                    m2 = localize(m)
+                    log("CONVERTITA", m, "->", m2)
+                    new.append(m2); fresh.add(row["id"]); changed = True
+                    continue
+                except Exception as e:
+                    log("  conversione fallita", m, e)
+            new.append(m)
+        row["media"] = "|".join(new)
+    return changed, fresh
 
 
 def notify(row):
@@ -160,7 +204,7 @@ def main():
     with open(CAL, newline="", encoding="utf-8") as f:
         rows = list(csv.DictReader(f))
     now = datetime.now(TZ)
-    changed = False
+    changed, fresh = (False, set()) if DRY else prepare(rows)
     for row in sorted(rows, key=lambda r: r["datetime"]):
         if row.get("status", "").strip().lower() not in ("", "scheduled"):
             continue
@@ -176,6 +220,9 @@ def main():
             row["status"], row["note"] = "skipped", f"troppo in ritardo ({now:%d/%m %H:%M})"
             changed = True
             log("SALTATO", row["id"], row["type"], row["datetime"])
+            continue
+        if row["id"] in fresh:
+            log("RIMANDATO (immagine appena convertita)", row["id"])
             continue
         log("PUBBLICO", row["id"], row["type"], row["datetime"], row["media"])
         try:

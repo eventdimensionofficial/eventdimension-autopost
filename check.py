@@ -20,20 +20,26 @@ try:
     s, ct, _ = get(base + "/storia-caposile.jpg"); print("Immagini online:", s, ct)
 except Exception as e:
     print("Immagini NON raggiungibili:", e); ok = False
-# conversione webp -> jpg per le locandine del sito
+# download locandina webp dal sito (per la conversione in JPG)
 try:
-    u = "https://images.weserv.nl/?url=eventdimension.com/wp-content/uploads/2026/08/Monegros-2027-1024x1024-1-optimized.webp&output=jpg"
-    s, ct, _ = get(u); print("Conversione JPG:", s, ct)
-    if "jpeg" not in (ct or ""): ok = False
+    u = "https://eventdimension.com/wp-content/uploads/2026/08/Monegros-2027-1024x1024-1-optimized.webp"
+    req = urllib.request.Request(u, headers={"User-Agent": "Mozilla/5.0 (EventDimension autopost)"})
+    with urllib.request.urlopen(req, timeout=30) as r: print("Locandina sito:", r.status, r.headers.get("Content-Type"))
 except Exception as e:
-    print("Conversione JPG NON riuscita:", e); ok = False
+    print("Locandina sito NON scaricabile:", e); ok = False
+try:
+    s2, ct2, _ = get("https://raw.githubusercontent.com/" + os.environ.get("GITHUB_REPOSITORY", "") + "/main/media/post-caposile.jpg")
+    print("Immagini raw:", s2, ct2)
+    if "image/jpeg" not in (ct2 or ""): ok = False
+except Exception as e:
+    print("Immagini raw NON raggiungibili:", e); ok = False
 # notifica di prova
 topic = os.environ.get("NTFY_TOPIC", "").strip()
 if topic:
     try:
         body = json.dumps({"topic": topic, "title": "✅ Notifiche Event Dimension attive",
                            "message": "Da ora ricevi qui i promemoria per storie e reel.",
-                           "attach": base + "/storia-caposile-link.jpg", "tags": ["tada"]}).encode()
+                           "tags": ["tada"]}).encode()
         req = urllib.request.Request("https://ntfy.sh", data=body, headers={"Content-Type": "application/json"})
         urllib.request.urlopen(req, timeout=30); print("Notifica di prova inviata")
     except Exception as e:
