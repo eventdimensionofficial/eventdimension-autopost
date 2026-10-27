@@ -274,6 +274,20 @@ def do_row(row):
     return publish(cid)
 
 
+def repost_reminder(row, media_id, when):
+    """Dopo un post/carousel pubblicato, crea un promemoria per ricondividerlo nelle storie."""
+    try:
+        link = api("GET", media_id, {"fields": "permalink"}).get("permalink", "")
+    except Exception:
+        link = ""
+    title = (row.get("caption") or "").strip().splitlines()[0][:90] if row.get("caption") else row["id"]
+    text = (f"🔁 Ricondividi il post nelle storie: {title}\n"
+            "1) Apri il post (tocca la notifica)  2) Tasto Condividi → \"Aggiungi alla storia\"\n"
+            "3) Aggiungi lo sticker LINK ai biglietti e un testo tipo \"NUOVO POST 👀\"\n" + link)
+    return {"id": f"rp-{row['id']}", "datetime": when.strftime("%Y-%m-%d %H:%M"), "type": "REMINDER",
+            "media": "", "caption": text, "status": "scheduled", "result": "", "note": ""}
+
+
 def main():
     with open(CAL, newline="", encoding="utf-8") as f:
         rows = list(csv.DictReader(f))
@@ -303,6 +317,10 @@ def main():
             mid = do_row(row)
             row["status"], row["result"], row["note"] = "published", mid, f"ok {datetime.now(TZ):%d/%m %H:%M}"
             log("  OK", mid)
+            kind = row["type"].strip().upper()
+            if kind in ("POST", "CAROUSEL", "REEL") and not DRY and not any(x["id"] == f"rp-{row['id']}" for x in rows):
+                rows.append(repost_reminder(row, mid, datetime.now(TZ) + timedelta(minutes=30)))
+                log("  promemoria ricondivisione tra 30 minuti")
         except Exception as e:
             row["status"], row["note"] = "error", str(e)[:300]
             log("  ERRORE", e)
