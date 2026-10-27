@@ -15,7 +15,7 @@ all'orario previsto, senza abbonamenti.
 |---|---|
 | id | codice univoco |
 | datetime | `AAAA-MM-GG HH:MM`, ora italiana |
-| type | `STORY`, `POST` o `CAROUSEL` |
+| type | `POST`, `CAROUSEL`, `STORY` (pubblicati in automatico) oppure `REMINDER` (notifica sul telefono con immagine e link, per storie/reel da pubblicare a mano) |
 | media | nome del file in `media/` (per il carousel più file separati da `\|`) |
 | caption | testo del post (le storie non hanno testo) |
 | status | `scheduled` → poi `published`, `error` o `skipped` |
@@ -26,6 +26,7 @@ Se un contenuto non riesce a partire entro 6 ore dall'orario viene segnato `skip
 ## Secrets necessari (Settings → Secrets and variables → Actions)
 - `IG_TOKEN` – token Instagram (long-lived)
 - `IG_USER_ID` – ID dell'account Instagram
+- `NTFY_TOPIC` – nome del canale ntfy su cui arrivano le notifiche
 - `GH_PAT` – token GitHub con permesso "Secrets: read and write" su questo repository
   (serve solo per salvare il token rinnovato)
 

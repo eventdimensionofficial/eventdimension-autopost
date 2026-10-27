@@ -1,11 +1,38 @@
 id,datetime,type,media,caption,status,result,note
-s-0101-1,2026-11-01 13:00,STORY,storia-marco-carola.jpg,,scheduled,,
-s-0101-2,2026-11-01 18:00,STORY,storia-traumer.jpg,,scheduled,,
-s-0101-3,2026-11-01 20:30,STORY,storia-caposile.jpg,,scheduled,,
-s-0102-1,2026-11-02 13:00,STORY,storia-caposile.jpg,,scheduled,,
-s-0102-2,2026-11-02 19:00,STORY,storia-traumer.jpg,,scheduled,,
-s-0102-3,2026-11-02 21:00,STORY,storia-marco-carola.jpg,,scheduled,,
-s-0103-1,2026-11-03 13:00,STORY,storia-caposile.jpg,,scheduled,,
-s-0103-2,2026-11-03 20:30,STORY,storia-novah.jpg,,scheduled,,
-s-0103-3,2026-11-03 22:00,STORY,storia-holy-priest.jpg,,scheduled,,
+s-0101-1,2026-11-01 13:00,REMINDER,storia-marco-carola-link.jpg,"📲 Storia da pubblicare: Marco Carola at Vision · 13 nov, Fabrique Milano
+1) Salva l'immagine  2) Instagram → nuova storia
+3) Sticker LINK: https://ticketdimension.it/evento/marco-carola-at-vision
+4) Extra: cursore emoji 🔥 ""Quanto sei carico per Carola?""",scheduled,,
+s-0101-2,2026-11-01 18:00,REMINDER,storia-traumer-link.jpg,"📲 Storia da pubblicare: Traumer · 14 nov, Amnesia Milano
+1) Salva l'immagine  2) Instagram → nuova storia
+3) Sticker LINK: https://ticketdimension.it/evento/traumer
+4) Extra: conto alla rovescia ""Traumer 14.11""",scheduled,,
+s-0101-3,2026-11-01 20:30,REMINDER,storia-caposile-link.jpg,"📲 Storia da pubblicare: Caposile Festival · 6-8 nov, Verona
+1) Salva l'immagine  2) Instagram → nuova storia
+3) Sticker LINK: https://ticket.eventdimension.com/eventi/crazy-horse-night-presents-caposile-festival-2026/
+4) Extra: conto alla rovescia ""Caposile 6.11""",scheduled,,
+s-0102-1,2026-11-02 13:00,REMINDER,storia-caposile-link.jpg,"📲 Storia da pubblicare: Caposile Festival · 6-8 nov, Verona
+1) Salva l'immagine  2) Instagram → nuova storia
+3) Sticker LINK: https://ticket.eventdimension.com/eventi/crazy-horse-night-presents-caposile-festival-2026/
+4) Extra: conto alla rovescia ""Caposile 6.11""",scheduled,,
+s-0102-2,2026-11-02 19:00,REMINDER,storia-traumer-link.jpg,"📲 Storia da pubblicare: Traumer · 14 nov, Amnesia Milano
+1) Salva l'immagine  2) Instagram → nuova storia
+3) Sticker LINK: https://ticketdimension.it/evento/traumer
+4) Extra: conto alla rovescia ""Traumer 14.11""",scheduled,,
+s-0102-3,2026-11-02 21:00,REMINDER,storia-marco-carola-link.jpg,"📲 Storia da pubblicare: Marco Carola at Vision · 13 nov, Fabrique Milano
+1) Salva l'immagine  2) Instagram → nuova storia
+3) Sticker LINK: https://ticketdimension.it/evento/marco-carola-at-vision
+4) Extra: cursore emoji 🔥 ""Quanto sei carico per Carola?""",scheduled,,
+s-0103-1,2026-11-03 13:00,REMINDER,storia-caposile-link.jpg,"📲 Storia da pubblicare: Caposile Festival · 6-8 nov, Verona
+1) Salva l'immagine  2) Instagram → nuova storia
+3) Sticker LINK: https://ticket.eventdimension.com/eventi/crazy-horse-night-presents-caposile-festival-2026/
+4) Extra: conto alla rovescia ""Caposile 6.11""",scheduled,,
+s-0103-2,2026-11-03 20:30,REMINDER,storia-novah-link.jpg,"📲 Storia da pubblicare: NOVAH · 14 nov, Terminal 1 Roma
+1) Salva l'immagine  2) Instagram → nuova storia
+3) Sticker LINK: https://ticketdimension.it/evento/novah-terminal-1-co-cinecitta-world
+4) Extra: sondaggio ""Ci sei? 🔥 Sì / 👀 Forse""",scheduled,,
+s-0103-3,2026-11-03 22:00,REMINDER,storia-holy-priest-link.jpg,"📲 Storia da pubblicare: Holy Priest · 4 dic, Fabrique Milano
+1) Salva l'immagine  2) Instagram → nuova storia
+3) Sticker LINK: https://ticket.eventdimension.com/eventi/holy-priest/
+4) Extra: domanda ""Con chi vieni? 👇""",scheduled,,
 test-caposile,2026-10-27 22:58,STORY,storia-caposile.jpg,,published,17916359817532998,ok 27/10 22:58
