@@ -206,6 +206,11 @@ def notify(row, at=None):
         img = f0 if f0.startswith(("http://", "https://")) else media_url(f0)
         msg["attach"] = img
         msg["actions"].append({"action": "view", "label": "Video" if is_video(img) else "Immagine", "url": img})
+        for i, f in enumerate(files[1:], 2):
+            if len(msg["actions"]) >= 3:
+                break
+            u = f.strip() if f.strip().startswith(("http://", "https://")) else media_url(f.strip())
+            msg["actions"].append({"action": "view", "label": f"Immagine {i}", "url": u})
     if at is not None:
         msg["delay"] = str(int(at.timestamp()))
     if DRY:
@@ -295,10 +300,35 @@ def repost_reminder(row, media_id, when):
             "media": "", "caption": text, "status": "scheduled", "result": "", "note": ""}
 
 
+AUTO_PUBLISH = os.environ.get("AUTO_PUBLISH", "0") == "1"   # spento: post e reel arrivano come notifica
+
+
+def as_reminder(row):
+    """Trasforma un post/carousel/reel/storia in un promemoria da pubblicare a mano."""
+    kind = row["type"].strip().upper()
+    cap = (row.get("caption") or "").strip()
+    first = cap.splitlines()[0][:90] if cap else row["id"]
+    n = len([m for m in row["media"].split("|") if m.strip()])
+    head = {"POST": "📸 Post da pubblicare", "CAROUSEL": "📸 Carosello da pubblicare",
+            "REEL": "🎬 Reel da pubblicare", "STORY": "📲 Storia da pubblicare"}.get(kind, "📸 Da pubblicare")
+    if kind in ("POST", "CAROUSEL") and n > 1:
+        head = "📸 Carosello da pubblicare"
+    steps = (f"1) Salva {'le ' + str(n) + ' immagini (tasti Immagine)' if n > 1 else 'l' + chr(39) + 'immagine'}  2) Instagram → nuovo post\n"
+             "3) Copia questa descrizione:" if kind in ("POST", "CAROUSEL") else
+             "1) Salva il video  2) Instagram → nuovo Reel\n3) Aggiungi un AUDIO DI TENDENZA\n4) Descrizione:" if kind == "REEL" else
+             "1) Salva l'immagine  2) Instagram → nuova storia")
+    row["caption"] = f"{head}: {first}\n{steps}\n\n{cap}".strip()
+    row["type"] = "REMINDER"
+
+
 def main():
     with open(CAL, newline="", encoding="utf-8") as f:
         rows = list(csv.DictReader(f))
     now = datetime.now(TZ)
+    if not AUTO_PUBLISH:
+        for r in rows:
+            if r.get("status", "").strip().lower() in ("", "scheduled") and r["type"].strip().upper() != "REMINDER":
+                as_reminder(r)
     changed, fresh = (False, set()) if DRY else prepare(rows)
     for row in sorted(rows, key=lambda r: r["datetime"]):
         if row.get("status", "").strip().lower() not in ("", "scheduled"):
