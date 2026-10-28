@@ -129,22 +129,53 @@ def page_html(ev, poster, bg, cta, reel=False):
 {"<script>" + REEL_JS + "render(0);</script>" if reel else ""}</body></html>"""
 
 
-STORY_VERSION = "5"   # cambia questo numero per ricreare tutte le storie con un nuovo stile
+STORY_VERSION = "6"   # cambia questo numero per ricreare tutte le storie con un nuovo stile
 
 STORY_CSS = """
 *{margin:0;padding:0;box-sizing:border-box}
-html,body{width:1080px;height:1920px;overflow:hidden;background:#000;font-family:Inter,sans-serif;color:#fff}
-.poster{position:absolute;inset:0;width:1080px;height:1920px}
-.cta{position:absolute;left:0;right:0;text-align:center}
-.cta span{display:inline-block;font:700 40px/1 'Space Grotesk';padding:26px 40px;border-radius:999px;background:#fff;color:#0a0a0a;box-shadow:0 12px 40px rgba(0,0,0,.55)}
-.cta small{display:inline-block;margin-top:16px;font:600 28px/1 Inter;padding:10px 18px;border-radius:999px;background:rgba(0,0,0,.55)}
+html,body{width:1080px;height:1920px;overflow:hidden;font-family:Inter,sans-serif;color:#fff}
+.poster{position:absolute;left:0;width:1080px;height:1080px}
+.fade{position:absolute;left:0;width:1080px;height:140px}
+.brand{position:absolute;left:0;right:0;top:200px;text-align:center}
+.brand span{display:inline-block;font:600 26px/1 Inter;letter-spacing:.32em;text-transform:uppercase;padding:14px 26px;border-radius:999px;background:rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.3)}
+.txt{position:absolute;left:70px;right:70px}
+.date{display:inline-block;font:700 32px/1 'Space Grotesk';letter-spacing:.04em;text-transform:uppercase;padding:14px 22px;border-radius:12px;background:#fff;color:#0a0a0a}
+.name{margin-top:24px;font:700 var(--fs)/0.95 'Space Grotesk';letter-spacing:-.04em;text-transform:uppercase}
+.venue{margin-top:16px;font:500 38px/1.2 'Space Grotesk';color:rgba(255,255,255,.9)}
+.cta{margin-top:34px}
+.cta span{display:inline-block;font:700 38px/1 'Space Grotesk';padding:24px 38px;border-radius:999px;background:#fff;color:#0a0a0a}
 """
 
 
-def story_html(ev, poster, variant):
-    """Locandina intera allungata a tutto schermo 1080x1920: niente tagli, niente bordi, niente scritte sopra."""
-    return f"""<!doctype html><html><head><meta charset="utf-8"><style>{STORY_CSS}</style></head><body>
-<img class="poster" src="file://{poster}"></body></html>"""
+def edge_colors(im):
+    """Colore medio del bordo alto e basso della locandina (per continuarla senza sfocature)."""
+    p = im.convert("RGB").resize((64, 64))
+    top = p.crop((0, 0, 64, 3)).resize((1, 1), Image.LANCZOS).getpixel((0, 0))
+    bot = p.crop((0, 61, 64, 64)).resize((1, 1), Image.LANCZOS).getpixel((0, 0))
+    return top, bot
+
+
+def story_html(ev, poster, variant, im):
+    """Storia 1080x1920: locandina intera (non tagliata, non deformata) a tutta larghezza;
+    sopra e sotto continua con i colori della locandina, con i testi dell'evento."""
+    (tr, tg, tb), (br_, bg_, bb) = edge_colors(im)
+    dark = lambda r, g, b, k: f"rgb({int(r*k)},{int(g*k)},{int(b*k)})"
+    top_c, bot_c = f"rgb({tr},{tg},{tb})", f"rgb({br_},{bg_},{bb})"
+    y = 300                                   # la locandina va da 300 a 1380
+    name = html.escape(ev.get("name") or ev["slug"])
+    n = max((len(w) for w in name.split()), default=10)
+    fs = max(64, min(104, int(940 / max(n, 1) / 0.62), int(100 * 22 / max(len(name), 12))))
+    date, venue = html.escape(ev["date"]), html.escape(ev["venue"])
+    cta = "🎟️ Biglietti qui sotto 👇" if variant == "link" else "🎟️ Biglietti · link in bio"
+    return f"""<!doctype html><html><head><meta charset="utf-8"><style>{font_css()}{STORY_CSS}</style></head>
+<body style="background:linear-gradient(180deg,{dark(tr,tg,tb,.55)} 0,{top_c} {y}px,{bot_c} {y+1080}px,{dark(br_,bg_,bb,.35)} 1920px)">
+<img class="poster" src="file://{poster}" style="top:{y}px">
+<div class="fade" style="top:{y}px;background:linear-gradient(180deg,{top_c},transparent)"></div>
+<div class="fade" style="top:{y+1080-140}px;background:linear-gradient(0deg,{bot_c},transparent)"></div>
+<div class="brand"><span>Event Dimension</span></div>
+<div class="txt" style="top:{y+1080+40}px"><span class="date">{date}</span>
+<div class="name" style="--fs:{fs}px">{name}</div><div class="venue">📍 {venue}</div>
+<div class="cta"><span>{cta}</span></div></div></body></html>"""
 
 
 def build(ev, force=False, reel=True, page=None):
@@ -188,7 +219,7 @@ def build(ev, force=False, reel=True, page=None):
     tmp = os.path.join(HERE, ".tmp-gen"); os.makedirs(tmp, exist_ok=True)
     for k in ("story", "link"):
         if k in need:
-            f = os.path.join(tmp, f"{slug}-{k}.html"); open(f, "w").write(story_html(ev, src, k))
+            f = os.path.join(tmp, f"{slug}-{k}.html"); open(f, "w").write(story_html(ev, src, k, im))
             page.goto("file://" + f); page.wait_for_timeout(300)
             page.screenshot(path=outs[k], type="jpeg", quality=88)
     if "story" in need or "link" in need:
