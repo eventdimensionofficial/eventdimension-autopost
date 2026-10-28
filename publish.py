@@ -188,6 +188,9 @@ def notify(row, at=None):
     if not NTFY_TOPIC:
         raise RuntimeError("NTFY_TOPIC non impostato")
     text = (row.get("caption") or "").strip()
+    rid = (row.get("id") or "").lower()
+    if rid.startswith(("s-", "rp-")) and not re.search(r"musica|audio", text, re.I):
+        text += "\n🎵 Aggiungi la MUSICA: sticker Musica → un brano di tendenza (techno/house), parte più carica"
     lines = text.splitlines() or ["Contenuto da pubblicare"]
     msg = {"topic": NTFY_TOPIC, "title": lines[0][:120],
            "message": "\n".join(lines[1:]).strip() or lines[0],
@@ -196,7 +199,8 @@ def notify(row, at=None):
     files = [m for m in (row.get("media") or "").split("|") if m.strip()]
     if links:
         msg["click"] = links[0]
-        msg["actions"].append({"action": "view", "label": "Biglietti", "url": links[0]})
+        label = "Apri Instagram" if "instagram.com" in links[0] else "Biglietti"
+        msg["actions"].append({"action": "view", "label": label, "url": links[0]})
     if files:
         f0 = files[0].strip()
         img = f0 if f0.startswith(("http://", "https://")) else media_url(f0)
