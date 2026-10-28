@@ -199,7 +199,8 @@ def notify(row, at=None):
     files = [m for m in (row.get("media") or "").split("|") if m.strip()]
     if links:
         msg["click"] = links[0]
-        label = "Apri Instagram" if "instagram.com" in links[0] else "Biglietti"
+        label = ("Apri Instagram" if "instagram.com" in links[0] else
+                 "Apri il sito" if links[0].rstrip("/") == "https://eventdimension.com" else "Biglietti")
         msg["actions"].append({"action": "view", "label": label, "url": links[0]})
     if files:
         f0 = files[0].strip()
