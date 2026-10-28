@@ -5,8 +5,8 @@ Legge events.csv (slug,name,sub,date,venue,link[,image]) e, per ogni evento
 che non ha ancora i file in media/, scarica la locandina dalla pagina evento
 del sito (og:image) e crea:
   media/post-<slug>.jpg        locandina per post (JPG, max 1080 px)
-  media/storia-<slug>-link.jpg storia 1080x1920, locandina intera + spazio per lo sticker link
-  media/storia-<slug>.jpg      storia 1080x1920, locandina intera con "link in bio"
+  media/storia-<slug>-link.jpg storia 1080x1920, locandina intera a tutto schermo + spazio per lo sticker link
+  media/storia-<slug>.jpg      storia 1080x1920, locandina intera a tutto schermo con "link in bio"
   media/reel-<slug>.mp4        reel 10 secondi 1080x1920
 
 Uso: python generate.py [--force slug ...] [--no-reel]
@@ -129,50 +129,22 @@ def page_html(ev, poster, bg, cta, reel=False):
 {"<script>" + REEL_JS + "render(0);</script>" if reel else ""}</body></html>"""
 
 
-STORY_VERSION = "3"   # cambia questo numero per ricreare tutte le storie con un nuovo stile
+STORY_VERSION = "5"   # cambia questo numero per ricreare tutte le storie con un nuovo stile
 
 STORY_CSS = """
 *{margin:0;padding:0;box-sizing:border-box}
 html,body{width:1080px;height:1920px;overflow:hidden;background:#000;font-family:Inter,sans-serif;color:#fff}
-.bg{position:absolute;inset:-60px;background-size:cover;background-position:center}
-.brand{position:absolute;left:0;right:0;top:215px;text-align:center}
-.brand span{display:inline-block;font:600 26px/1 Inter;letter-spacing:.32em;text-transform:uppercase;padding:14px 26px;border-radius:999px;background:rgba(0,0,0,.45);border:1px solid rgba(255,255,255,.3)}
-.poster{position:absolute;left:0;width:1080px;object-fit:contain;box-shadow:0 30px 90px rgba(0,0,0,.6)}
-.info{position:absolute;left:40px;right:40px;text-align:center}
-.line{font:600 40px/1.25 'Space Grotesk';letter-spacing:-.01em}
-.line b{font-weight:700}
-.cta{margin-top:34px}
-.cta span{display:inline-block;font:700 40px/1 'Space Grotesk';padding:26px 40px;border-radius:999px;background:#fff;color:#0a0a0a}
-.cta small{display:block;margin-top:18px;font:600 28px/1 Inter;color:rgba(255,255,255,.85)}
+.poster{position:absolute;inset:0;width:1080px;height:1920px}
+.cta{position:absolute;left:0;right:0;text-align:center}
+.cta span{display:inline-block;font:700 40px/1 'Space Grotesk';padding:26px 40px;border-radius:999px;background:#fff;color:#0a0a0a;box-shadow:0 12px 40px rgba(0,0,0,.55)}
+.cta small{display:inline-block;margin-top:16px;font:600 28px/1 Inter;padding:10px 18px;border-radius:999px;background:rgba(0,0,0,.55)}
 """
 
 
-def story_html(ev, poster, bg, size, variant):
-    """Locandina intera (nessun taglio) a tutta larghezza, sfondo sfocato sopra e sotto."""
-    w, h = size
-    ph = min(1250, round(1080 * h / w))          # altezza della locandina nella storia
-    pw = round(ph * w / h)
-    top = 300 if ph > 1150 else 330
-    date, venue = html.escape(ev["date"]), html.escape(ev["venue"])
-    if variant == "link":
-        cta = '<div class="cta"><span>🎟️ Biglietti qui sotto 👇</span></div>'
-    else:
-        cta = '<div class="cta"><span>🎟️ Biglietti · link in bio</span><small>eventdimension.com</small></div>'
-    return f"""<!doctype html><html><head><meta charset="utf-8"><style>{font_css()}{STORY_CSS}</style></head><body>
-<div class="bg" style="background-image:url('file://{bg}')"></div>
-<div class="brand"><span>Event Dimension</span></div>
-<img class="poster" src="file://{poster}" style="top:{top}px;height:{ph}px;width:{pw}px;left:{(1080 - pw) // 2}px">
-<div class="info" style="top:{top + ph + 50}px"><div class="line"><b>{date}</b> · {venue}</div>{cta}</div>
-</body></html>"""
-
-
-def full_bleed(im, path):
-    """Locandina a tutto schermo 1080x1920 (riempie la storia, ritaglio centrale)."""
-    w, h = im.size
-    s = max(1080 / w, 1920 / h)
-    r = im.resize((max(1080, round(w * s)), max(1920, round(h * s))), Image.LANCZOS)
-    x, y = (r.width - 1080) // 2, (r.height - 1920) // 2
-    r.crop((x, y, x + 1080, y + 1920)).save(path, "JPEG", quality=92)
+def story_html(ev, poster, variant):
+    """Locandina intera allungata a tutto schermo 1080x1920: niente tagli, niente bordi, niente scritte sopra."""
+    return f"""<!doctype html><html><head><meta charset="utf-8"><style>{STORY_CSS}</style></head><body>
+<img class="poster" src="file://{poster}"></body></html>"""
 
 
 def build(ev, force=False, reel=True, page=None):
@@ -216,7 +188,7 @@ def build(ev, force=False, reel=True, page=None):
     tmp = os.path.join(HERE, ".tmp-gen"); os.makedirs(tmp, exist_ok=True)
     for k in ("story", "link"):
         if k in need:
-            f = os.path.join(tmp, f"{slug}-{k}.html"); open(f, "w").write(story_html(ev, src, bg, im.size, k))
+            f = os.path.join(tmp, f"{slug}-{k}.html"); open(f, "w").write(story_html(ev, src, k))
             page.goto("file://" + f); page.wait_for_timeout(300)
             page.screenshot(path=outs[k], type="jpeg", quality=88)
     if "story" in need or "link" in need:
