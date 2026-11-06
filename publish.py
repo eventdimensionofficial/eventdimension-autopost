@@ -372,6 +372,22 @@ def main():
             row["status"], row["note"] = "error", str(e)[:300]
             log("  ERRORE", e)
         changed = True
+    # avviso se il piano sta per finire (nessun promemoria nelle prossime 48 ore)
+    ahead = [r for r in rows if r.get("status", "").strip().lower() in ("", "scheduled", "queued")
+             and r["datetime"].strip() > now.strftime("%Y-%m-%d %H:%M")
+             and r["datetime"].strip() <= (now + timedelta(hours=48)).strftime("%Y-%m-%d %H:%M")]
+    alert_id = f"alert-{now:%Y%m%d}"
+    if not ahead and 9 <= now.hour < 22 and not any(r["id"] == alert_id for r in rows) and not DRY:
+        try:
+            notify({"id": alert_id, "media": "", "caption": "⚠️ Piano social quasi finito\n"
+                    "Non ci sono notifiche programmate nelle prossime 48 ore.\n"
+                    "Scrivi a Claude: \"fai ripartire le notifiche\"."})
+            rows.append({"id": alert_id, "datetime": now.strftime("%Y-%m-%d %H:%M"), "type": "REMINDER",
+                         "media": "", "caption": "avviso piano vuoto", "status": "sent", "result": "", "note": ""})
+            changed = True
+            log("AVVISO piano vuoto inviato")
+        except Exception as e:
+            log("  ERRORE avviso", e)
     if changed and not DRY:
         with open(CAL, "w", newline="", encoding="utf-8") as f:
             w = csv.DictWriter(f, fieldnames=FIELDS, extrasaction="ignore")
