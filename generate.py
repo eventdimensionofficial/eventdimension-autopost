@@ -129,42 +129,46 @@ def page_html(ev, poster, bg, cta, reel=False):
 {"<script>" + REEL_JS + "render(0);</script>" if reel else ""}</body></html>"""
 
 
-STORY_VERSION = "8"   # cambia questo numero per ricreare tutte le storie con un nuovo stile
+STORY_VERSION = "10"   # cambia questo numero per ricreare tutte le storie con un nuovo stile
 
 STORY_CSS = """
 *{margin:0;padding:0;box-sizing:border-box}
 html,body{width:1080px;height:1920px;overflow:hidden;background:#000;font-family:Inter,sans-serif;color:#fff}
-.bg{position:absolute;inset:-80px;background-size:cover;background-position:center}
-.shade{position:absolute;inset:0;background:radial-gradient(120% 60% at 50% 38%,rgba(0,0,0,0) 0%,rgba(0,0,0,.35) 70%),linear-gradient(180deg,rgba(0,0,0,.55),rgba(0,0,0,0) 20%,rgba(0,0,0,0) 55%,rgba(0,0,0,.85))}
-.brand{position:absolute;left:0;right:0;top:215px;text-align:center}
-.brand span{display:inline-block;font:600 26px/1 Inter;letter-spacing:.32em;text-transform:uppercase;padding:14px 26px;border-radius:999px;background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.28)}
-.poster{position:absolute;left:70px;top:300px;width:940px;height:940px;border-radius:32px;object-fit:cover;
-  box-shadow:0 50px 120px rgba(0,0,0,.75),0 0 0 2px rgba(255,255,255,.12)}
-.info{position:absolute;left:70px;right:70px;top:1290px;text-align:center}
-.date{display:inline-block;font:700 34px/1 'Space Grotesk';letter-spacing:.05em;text-transform:uppercase;padding:16px 26px;border-radius:14px;background:#fff;color:#0a0a0a}
-.name{margin-top:26px;font:700 var(--fs)/1 'Space Grotesk';letter-spacing:-.035em;text-transform:uppercase}
-.venue{margin-top:16px;font:500 38px/1.2 'Space Grotesk';color:rgba(255,255,255,.88)}
-.cta{position:absolute;left:0;right:0;text-align:center}
-.cta span{display:inline-block;font:700 40px/1 'Space Grotesk';padding:26px 42px;border-radius:999px;background:#fff;color:#0a0a0a;box-shadow:0 14px 40px rgba(0,0,0,.45)}
-.cta small{display:block;margin-top:18px;font:600 28px/1 Inter;color:rgba(255,255,255,.8)}
+.bg{position:absolute;inset:-80px;background-size:cover;background-position:center;transform:scale(1.05)}
+.shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.65) 0%,rgba(0,0,0,.15) 18%,rgba(0,0,0,.2) 55%,rgba(0,0,0,.9) 80%,rgba(0,0,0,.95) 100%)}
+.top{position:absolute;left:50px;right:50px;top:190px;display:flex;justify-content:space-between;align-items:center}
+.top b{font:700 26px/1 'Space Grotesk';letter-spacing:.34em;text-transform:uppercase}
+.top span{font:600 24px/1 Inter;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.75)}
+.poster{position:absolute;left:50px;top:260px;width:980px;height:980px;border-radius:26px;object-fit:cover;
+  box-shadow:0 40px 110px rgba(0,0,0,.7)}
+.txt{position:absolute;left:60px;right:60px;top:1290px}
+.date{font:700 var(--ds)/.95 'Space Grotesk';letter-spacing:-.04em;text-transform:uppercase}
+.line{width:120px;height:6px;border-radius:6px;background:#fff;margin:26px 0 24px}
+.name{font:700 var(--fs)/1.02 'Space Grotesk';letter-spacing:-.02em;text-transform:uppercase}
+.sub{margin-top:12px;font:500 30px/1.25 Inter;color:rgba(255,255,255,.7)}
+.venue{margin-top:16px;font:500 36px/1.2 'Space Grotesk';color:rgba(255,255,255,.9)}
 """
 
 
 def story_html(ev, poster, bg, variant):
-    """Storia 1080x1920 stile Event Dimension: locandina quadrata intera su sfondo sfocato."""
+    """Storia 1080x1920: locandina quadrata grande, testi allineati a sinistra, nessun pulsante
+    (lo sticker link lo aggiunge l'utente nello spazio libero in basso)."""
     name = html.escape(ev.get("name") or ev["slug"])
-    fs = 76 if len(name) <= 18 else 62 if len(name) <= 28 else 52
-    date, venue = html.escape(ev["date"]), html.escape(ev["venue"])
-    if variant == "link":   # pulsante più in alto, sotto resta spazio per lo sticker link
-        cta = '<div class="cta" style="top:1570px"><span>🎟️ Biglietti qui sotto 👇</span></div>'
-    else:
-        cta = '<div class="cta" style="top:1590px"><span>🎟️ Biglietti · link in bio</span><small>eventdimension.com</small></div>'
+    fs = 58 if len(name) <= 22 else 48 if len(name) <= 34 else 40
+    date = html.escape(ev["date"])
+    ds = 104 if len(date) <= 11 else 84 if len(date) <= 16 else 68
+    sub = html.escape(ev.get("sub") or "")
+    sub = "" if (not sub or sub.lower() in name.lower() or sub.lower() in ev["venue"].lower() or sub.lower().startswith("festival")) else sub
+    venue = html.escape(ev["venue"])
+    city = html.escape(ev["venue"].split("·")[-1].strip())
     return f"""<!doctype html><html><head><meta charset="utf-8"><style>{font_css()}{STORY_CSS}</style></head><body>
 <div class="bg" style="background-image:url('file://{bg}')"></div><div class="shade"></div>
-<div class="brand"><span>Event Dimension</span></div>
+<div class="top"><b>Event Dimension</b><span>{city}</span></div>
 <img class="poster" src="file://{poster}">
-<div class="info"><span class="date">{date}</span><div class="name" style="--fs:{fs}px">{name}</div>
-<div class="venue">📍 {venue}</div></div>{cta}</body></html>"""
+<div class="txt"><div class="date" style="--ds:{ds}px">{date}</div><div class="line"></div>
+<div class="name" style="--fs:{fs}px">{name}</div>{f'<div class="sub">{sub}</div>' if sub else ''}
+<div class="venue">📍 {venue}</div></div>
+</body></html>"""
 
 
 def build(ev, force=False, reel=True, page=None):
