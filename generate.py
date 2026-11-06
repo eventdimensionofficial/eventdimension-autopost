@@ -169,6 +169,11 @@ def story_html(ev, poster, bg, variant):
 
 def build(ev, force=False, reel=True, page=None):
     slug = ev["slug"]
+    img_now = (ev.get("image") or "").strip()
+    src_mark = os.path.join(SRC, f"{slug}.src")
+    changed_src = bool(img_now) and (not os.path.exists(src_mark) or open(src_mark).read().strip() != img_now)
+    if changed_src and os.path.exists(os.path.join(MEDIA, f"post-{slug}.jpg")):
+        force = True     # la locandina sul sito è cambiata: rifaccio tutto
     outs = {k: os.path.join(MEDIA, v.format(slug)) for k, v in
             (("post", "post-{}.jpg"), ("story", "storia-{}.jpg"), ("link", "storia-{}-link.jpg"), ("reel", "reel-{}.mp4"))}
     need = [k for k, p in outs.items() if force or not os.path.exists(p)]
@@ -193,8 +198,13 @@ def build(ev, force=False, reel=True, page=None):
             except Exception:
                 pass
         if data is None:
+            if changed_src and os.path.exists(src):
+                log(f"[{slug}] nuova locandina non scaricabile, tengo le grafiche attuali")
+                return False
             raise RuntimeError("locandina non trovata (controlla la colonna image o il link)")
         Image.open(io.BytesIO(data)).convert("RGB").save(src, "JPEG", quality=95)
+        if img_now:
+            open(src_mark, "w").write(img_now)
     im = Image.open(src).convert("RGB")
     # post: JPG max 1080 px, rapporto consentito da Instagram (4:5 … 1.91:1)
     if "post" in need:
