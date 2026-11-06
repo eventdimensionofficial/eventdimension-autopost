@@ -75,7 +75,7 @@ def main():
                     print("non raggiungibile:", base + p, e)
             if any(parse(g) for g in got):
                 pages = got
-                print("sito usato:", base)
+                print("::notice::sito usato:", base)
                 break
     found = {}
     for pg in pages:
@@ -135,7 +135,7 @@ def main():
                                    data=json.dumps(msg).encode(), headers={"Content-Type": "application/json"}), timeout=20)
         except Exception as e:
             print("notifica non inviata:", e)
-    print(f"Eventi sul sito: {len(found)}. Modifiche: {len(changes)}")
+    print(f"::notice::Eventi sul sito: {len(found)}. Modifiche: {len(changes)}")
     for c in changes:
         print(" -", c)
     return 0

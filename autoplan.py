@@ -198,7 +198,7 @@ def main():
                 f"2) Sticker LINK: {tom[0]['link']}\n3) Testo \"DOMANI 🔥\" + countdown\n🎵 Aggiungi la MUSICA\n"
                 "https://www.instagram.com/eventdimension_experience/")
     if not new:
-        print("Piano già completo per i prossimi", DAYS, "giorni.")
+        print(f"::notice::Piano già completo per i prossimi {DAYS} giorni.")
         return 0
     cal += new
     cal.sort(key=lambda r: r["datetime"])
@@ -206,7 +206,7 @@ def main():
         w = csv.DictWriter(f, fieldnames=FIELDS, extrasaction="ignore")
         w.writeheader()
         w.writerows(cal)
-    print(f"Aggiunti {len(new)} promemoria fino al {(today + timedelta(days=DAYS)).isoformat()}")
+    print(f"::notice::Aggiunti {len(new)} promemoria fino al {(today + timedelta(days=DAYS)).isoformat()}")
     return 0
 
 
