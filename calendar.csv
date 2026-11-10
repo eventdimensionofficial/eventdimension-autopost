@@ -630,7 +630,7 @@ s-1113-1,2026-11-13 11:30,REMINDER,storia-marco-carola-link.jpg,"📲 Storia da 
 1) Salva l'immagine  2) Instagram → nuova storia
 3) Sticker LINK: https://ticketdimension.it/evento/marco-carola-at-vision
 4) Extra: sondaggio ""Primo volta o veterano?""
-🎵 Aggiungi la MUSICA: tech house / minimal groove (stile Music On)",scheduled,,
+🎵 Aggiungi la MUSICA: tech house / minimal groove (stile Music On)",queued,WLlc5yTGgIru,consegna programmata 13/11 11:30
 c-1113,2026-11-13 13:00,REMINDER,,"🔎 Controlla i profili degli eventi e dei club del sito
 Guarda se hanno pubblicato post, reel o storie nuove.
 Se c'è qualcosa → Condividi → ""Aggiungi alla storia"" + sticker LINK ai biglietti + tag del profilo
@@ -856,4 +856,55 @@ s-1117-5,2026-11-17 22:30,REMINDER,storia-holy-priest-roma-link.jpg,"📲 Storia
 1) Salva l'immagine  2) Instagram → nuova storia
 3) Sticker LINK: https://ticketdimension.it/evento/holy-priest-terminal-1-co-cinecitta-world
 4) Extra: sondaggio ""Ci sei? 🔥 Sì / Ovvio""
+🎵 Aggiungi la MUSICA: techno / tech house di tendenza",scheduled,,auto
+s-1118-1,2026-11-18 11:30,REMINDER,storia-sosa-sdk-link.jpg,"📲 Storia da pubblicare: Sosa + SDK · 21 Novembre, Amnesia, Milano
+1) Salva l'immagine  2) Instagram → nuova storia
+3) Sticker LINK: https://ticketdimension.it/evento/sosa-sdk-simone-de-kunovich
+4) Extra: sondaggio ""Prima volta o veterano?""
+🎵 Aggiungi la MUSICA: tech house / minimal groove",scheduled,,auto
+c-1118,2026-11-18 13:00,REMINDER,,"🔎 Controlla i profili degli eventi e dei club del sito
+Guarda se hanno pubblicato post, reel o storie nuove.
+Se c'è qualcosa → Condividi → ""Aggiungi alla storia"" + sticker LINK ai biglietti + tag del profilo
+https://www.instagram.com/",scheduled,,auto
+s-1118-2,2026-11-18 14:00,REMINDER,storia-marco-carola-roma-link.jpg,"📲 Storia da pubblicare: Marco Carola · Terminal 1 · 21 Novembre, Terminal 1, Cinecittà World, Roma
+1) Salva l'immagine  2) Instagram → nuova storia
+3) Sticker LINK: https://ticketdimension.it/evento/marco-carola-terminal-1-co-cinecitta-world
+4) Extra: quiz ""Indovina l'orario del set""
+🎵 Aggiungi la MUSICA: tech house / minimal groove",scheduled,,auto
+n-1118,2026-11-18 17:00,REMINDER,,"📰 Novità da postare? Controlla sito e social degli eventi
+Cerca: lineup aggiornate, orari (set times), mappe, sold out / ultimi biglietti, nuovi eventi, aftermovie.
+Se c'è qualcosa → fai un POST o una STORIA, es.:
+• ""LINEUP COMPLETA 🔥"" + locandina nuova
+• ""ULTIMI BIGLIETTI ⚠️"" / ""SOLD OUT""
+• ""ORARI DEI SET ⏰""
+👉 Occhio a: Sosa + SDK, Marco Carola · Terminal 1, Holy Priest
+https://eventdimension.com/",scheduled,,auto
+s-1118-3,2026-11-18 18:00,REMINDER,storia-holy-priest-link.jpg,"📲 Storia da pubblicare: Holy Priest · 4 Dicembre, Fabrique, Milano
+1) Salva l'immagine  2) Instagram → nuova storia
+3) Sticker LINK: https://ticketdimension.it/evento/holy-priest
+4) Extra: domanda ""Che pezzo vuoi sentire? 🎧""
+🎵 Aggiungi la MUSICA: techno / tech house di tendenza",scheduled,,auto
+r-1118,2026-11-18 19:30,REMINDER,reel-sosa-sdk.mp4,"🎬 Reel da pubblicare: Sosa + SDK · 21 Novembre, Amnesia, Milano
+1) Salva il video (tasto Video)  2) Instagram → nuovo Reel
+3) Aggiungi un AUDIO DI TENDENZA (tech house / minimal groove)
+4) Descrizione:
+
+🔥 Sosa + SDK · 21 Novembre · Amnesia, Milano
+🎟️ Link in bio
+#Sosa #eventdimension",scheduled,,auto
+s-1118-4,2026-11-18 20:30,REMINDER,storia-time-warp-2027-link.jpg,"📲 Storia da pubblicare: Time Warp 2027 · 3 Aprile 2027, Maimarkthalle, Mannheim
+1) Salva l'immagine  2) Instagram → nuova storia
+3) Sticker LINK: https://eventdimension.com/time-warp-mannheim-germania-03-aprile-2027-biglietti-pacchetti-hotel-e-bus
+4) Extra: sondaggio ""Ci sei? 🔥 Sì / Ovvio""
+🎵 Aggiungi la MUSICA: anthem del festival / techno da main stage",scheduled,,auto
+x-1118,2026-11-18 21:30,REMINDER,,"🔁 Ripubblica nelle storie un reel di Amnesia o di Sosa + SDK
+1) Cerca Amnesia su Instagram → apri l'ultimo reel
+2) Condividi → ""Aggiungi alla storia""
+3) Sticker LINK: https://ticketdimension.it/evento/sosa-sdk-simone-de-kunovich + tag del profilo
+4) Testo: ""21 Novembre 🔥 chi c'è?""
+https://www.instagram.com/",scheduled,,auto
+s-1118-5,2026-11-18 22:30,REMINDER,storia-holy-priest-roma-link.jpg,"📲 Storia da pubblicare: Holy Priest · Terminal 1 · 5 Dicembre, Terminal 1, Cinecittà World, Roma
+1) Salva l'immagine  2) Instagram → nuova storia
+3) Sticker LINK: https://ticketdimension.it/evento/holy-priest-terminal-1-co-cinecitta-world
+4) Extra: countdown all'evento
 🎵 Aggiungi la MUSICA: techno / tech house di tendenza",scheduled,,auto
