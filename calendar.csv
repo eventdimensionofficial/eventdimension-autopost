@@ -679,7 +679,7 @@ s-1114-1,2026-11-14 11:30,REMINDER,storia-traumer-link.jpg,"📲 Storia da pubbl
 1) Salva l'immagine  2) Instagram → nuova storia
 3) Sticker LINK: https://ticketdimension.it/evento/traumer
 4) Extra: cursore emoji 🔥 ""Quanto sei carico?""
-🎵 Aggiungi la MUSICA: minimal / deep tech",scheduled,,
+🎵 Aggiungi la MUSICA: minimal / deep tech",queued,8MNOAeUrY1zJ,consegna programmata 14/11 11:30
 c-1114,2026-11-14 13:00,REMINDER,,"🔎 Controlla i profili degli eventi e dei club del sito
 Guarda se hanno pubblicato post, reel o storie nuove.
 Se c'è qualcosa → Condividi → ""Aggiungi alla storia"" + sticker LINK ai biglietti + tag del profilo
@@ -907,4 +907,50 @@ s-1118-5,2026-11-18 22:30,REMINDER,storia-holy-priest-roma-link.jpg,"📲 Storia
 1) Salva l'immagine  2) Instagram → nuova storia
 3) Sticker LINK: https://ticketdimension.it/evento/holy-priest-terminal-1-co-cinecitta-world
 4) Extra: countdown all'evento
+🎵 Aggiungi la MUSICA: techno / tech house di tendenza",scheduled,,auto
+s-1119-1,2026-11-19 11:30,REMINDER,storia-sosa-sdk-link.jpg,"📲 Storia da pubblicare: Sosa + SDK · 21 Novembre, Amnesia, Milano
+1) Salva l'immagine  2) Instagram → nuova storia
+3) Sticker LINK: https://ticketdimension.it/evento/sosa-sdk-simone-de-kunovich
+4) Extra: quiz ""Indovina l'orario del set""
+🎵 Aggiungi la MUSICA: tech house / minimal groove",scheduled,,auto
+c-1119,2026-11-19 13:00,REMINDER,,"🔎 Controlla i profili degli eventi e dei club del sito
+Guarda se hanno pubblicato post, reel o storie nuove.
+Se c'è qualcosa → Condividi → ""Aggiungi alla storia"" + sticker LINK ai biglietti + tag del profilo
+https://www.instagram.com/",scheduled,,auto
+s-1119-2,2026-11-19 14:00,REMINDER,storia-marco-carola-roma-link.jpg,"📲 Storia da pubblicare: Marco Carola · Terminal 1 · 21 Novembre, Terminal 1, Cinecittà World, Roma
+1) Salva l'immagine  2) Instagram → nuova storia
+3) Sticker LINK: https://ticketdimension.it/evento/marco-carola-terminal-1-co-cinecitta-world
+4) Extra: domanda ""Che pezzo vuoi sentire? 🎧""
+🎵 Aggiungi la MUSICA: tech house / minimal groove",scheduled,,auto
+s-1119-3,2026-11-19 18:00,REMINDER,storia-holy-priest-link.jpg,"📲 Storia da pubblicare: Holy Priest · 4 Dicembre, Fabrique, Milano
+1) Salva l'immagine  2) Instagram → nuova storia
+3) Sticker LINK: https://ticketdimension.it/evento/holy-priest
+4) Extra: sondaggio ""Ci sei? 🔥 Sì / Ovvio""
+🎵 Aggiungi la MUSICA: techno / tech house di tendenza",scheduled,,auto
+p-1119,2026-11-19 19:00,REMINDER,post-jamback.jpg,"📸 Post da pubblicare: Jamback
+1) Salva l'immagine  2) Instagram → nuovo post
+3) Copia questa descrizione:
+
+🔥 JAMBACK
+19 Dicembre · Amnesia, Milano
+
+Si balla tra 30 giorni ⏳
+
+🎟️ Biglietti su eventdimension.com · link in bio
+
+#Jamback #Amnesia #Milano #clubbing #techno #nightlife #eventdimension",scheduled,,auto
+rp-1119,2026-11-19 19:30,REMINDER,,"🔁 Ricondividi il post nelle storie: Jamback
+1) Apri il post → tasto Condividi → ""Aggiungi alla storia""
+2) Sticker LINK ai biglietti + testo ""NUOVO POST 👀""
+🎵 Aggiungi la MUSICA
+https://www.instagram.com/eventdimension_experience/",scheduled,,auto
+s-1119-4,2026-11-19 20:30,REMINDER,storia-sunwaves-2027-link.jpg,"📲 Storia da pubblicare: Sunwaves Festival 2027 · 29 Apr – 5 Mag 2027, Golden Sands, Bulgaria
+1) Salva l'immagine  2) Instagram → nuova storia
+3) Sticker LINK: https://eventdimension.com/sunwaves-festival-2027-bulgaria-dal-29-aprile-al-05-maggio-ticket-e-pacchetti-hotel
+4) Extra: countdown all'evento
+🎵 Aggiungi la MUSICA: anthem del festival / techno da main stage",scheduled,,auto
+s-1119-5,2026-11-19 22:30,REMINDER,storia-holy-priest-roma-link.jpg,"📲 Storia da pubblicare: Holy Priest · Terminal 1 · 5 Dicembre, Terminal 1, Cinecittà World, Roma
+1) Salva l'immagine  2) Instagram → nuova storia
+3) Sticker LINK: https://ticketdimension.it/evento/holy-priest-terminal-1-co-cinecitta-world
+4) Extra: domanda ""Con chi vieni? 👇""
 🎵 Aggiungi la MUSICA: techno / tech house di tendenza",scheduled,,auto
