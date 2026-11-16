@@ -912,7 +912,7 @@ s-1119-1,2026-11-19 11:30,REMINDER,storia-sosa-sdk-link.jpg,"📲 Storia da pubb
 1) Salva l'immagine  2) Instagram → nuova storia
 3) Sticker LINK: https://ticketdimension.it/evento/sosa-sdk-simone-de-kunovich
 4) Extra: quiz ""Indovina l'orario del set""
-🎵 Aggiungi la MUSICA: tech house / minimal groove",scheduled,,auto
+🎵 Aggiungi la MUSICA: tech house / minimal groove",queued,1qtOhYZYo2oq,consegna programmata 19/11 11:30
 c-1119,2026-11-19 13:00,REMINDER,,"🔎 Controlla i profili degli eventi e dei club del sito
 Guarda se hanno pubblicato post, reel o storie nuove.
 Se c'è qualcosa → Condividi → ""Aggiungi alla storia"" + sticker LINK ai biglietti + tag del profilo
@@ -1147,4 +1147,50 @@ s-1123-5,2026-11-23 22:30,REMINDER,storia-tJYHwSw6FKTtj1YlXq0K43tB6keIa4ZkfM3eTg
 1) Salva l'immagine  2) Instagram → nuova storia
 3) Sticker LINK: https://ticketdimension.it/evento/cuartero-sante-sansone
 4) Extra: domanda ""Che pezzo vuoi sentire? 🎧""
+🎵 Aggiungi la MUSICA: techno / tech house di tendenza",scheduled,,auto
+s-1124-1,2026-11-24 11:30,REMINDER,storia-LNsW7Z1gEERcQrmmhjXZ2CXMaFg31hlLG2ddpE0p-link.jpg,"📲 Storia da pubblicare: Gennaro, Elbio & Denis · 28 Novembre, Amnesia Milano, Milano
+1) Salva l'immagine  2) Instagram → nuova storia
+3) Sticker LINK: https://ticketdimension.it/evento/gennaro-elbio-denis
+4) Extra: cursore emoji 🔥 ""Quanto sei carico?""
+🎵 Aggiungi la MUSICA: techno / tech house di tendenza",scheduled,,auto
+c-1124,2026-11-24 13:00,REMINDER,,"🔎 Controlla i profili degli eventi e dei club del sito
+Guarda se hanno pubblicato post, reel o storie nuove.
+Se c'è qualcosa → Condividi → ""Aggiungi alla storia"" + sticker LINK ai biglietti + tag del profilo
+https://www.instagram.com/",scheduled,,auto
+s-1124-2,2026-11-24 14:00,REMINDER,storia-holy-priest-link.jpg,"📲 Storia da pubblicare: Holy Priest · 4 Dicembre, Fabrique, Milano
+1) Salva l'immagine  2) Instagram → nuova storia
+3) Sticker LINK: https://ticketdimension.it/evento/holy-priest
+4) Extra: sondaggio ""Prima volta o veterano?""
+🎵 Aggiungi la MUSICA: techno / tech house di tendenza",scheduled,,auto
+s-1124-3,2026-11-24 18:00,REMINDER,storia-holy-priest-roma-link.jpg,"📲 Storia da pubblicare: Holy Priest · Terminal 1 · 5 Dicembre, Terminal 1, Cinecittà World, Roma
+1) Salva l'immagine  2) Instagram → nuova storia
+3) Sticker LINK: https://ticketdimension.it/evento/holy-priest-terminal-1-co-cinecitta-world
+4) Extra: quiz ""Indovina l'orario del set""
+🎵 Aggiungi la MUSICA: techno / tech house di tendenza",scheduled,,auto
+p-1124,2026-11-24 19:00,REMINDER,post-holy-priest.jpg,"📸 Post da pubblicare: Holy Priest
+1) Salva l'immagine  2) Instagram → nuovo post
+3) Copia questa descrizione:
+
+🔥 HOLY PRIEST
+4 Dicembre · Fabrique, Milano
+
+Si balla tra 10 giorni ⏳
+
+🎟️ Biglietti su eventdimension.com · link in bio
+
+#HolyPriest #Fabrique #Milano #clubbing #techno #nightlife #eventdimension",scheduled,,auto
+rp-1124,2026-11-24 19:30,REMINDER,,"🔁 Ricondividi il post nelle storie: Holy Priest
+1) Apri il post → tasto Condividi → ""Aggiungi alla storia""
+2) Sticker LINK ai biglietti + testo ""NUOVO POST 👀""
+🎵 Aggiungi la MUSICA
+https://www.instagram.com/eventdimension_experience/",scheduled,,auto
+s-1124-4,2026-11-24 20:30,REMINDER,storia-time-warp-2027-link.jpg,"📲 Storia da pubblicare: Time Warp 2027 · 3 Aprile 2027, Maimarkthalle, Mannheim
+1) Salva l'immagine  2) Instagram → nuova storia
+3) Sticker LINK: https://eventdimension.com/eventi/time-warp-2027
+4) Extra: domanda ""Che pezzo vuoi sentire? 🎧""
+🎵 Aggiungi la MUSICA: anthem del festival / techno da main stage",scheduled,,auto
+s-1124-5,2026-11-24 22:30,REMINDER,storia-tJYHwSw6FKTtj1YlXq0K43tB6keIa4ZkfM3eTgDj-link.jpg,"📲 Storia da pubblicare: Cuartero, Sante Sansone · 5 Dicembre, Amnesia Milano, Milano
+1) Salva l'immagine  2) Instagram → nuova storia
+3) Sticker LINK: https://ticketdimension.it/evento/cuartero-sante-sansone
+4) Extra: sondaggio ""Ci sei? 🔥 Sì / Ovvio""
 🎵 Aggiungi la MUSICA: techno / tech house di tendenza",scheduled,,auto
