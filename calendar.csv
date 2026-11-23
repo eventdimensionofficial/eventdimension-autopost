@@ -1249,7 +1249,7 @@ s-1126-1,2026-11-26 11:30,REMINDER,storia-LNsW7Z1gEERcQrmmhjXZ2CXMaFg31hlLG2ddpE
 1) Salva l'immagine  2) Instagram → nuova storia
 3) Sticker LINK: https://ticketdimension.it/evento/gennaro-elbio-denis
 4) Extra: quiz ""Indovina l'orario del set""
-🎵 Aggiungi la MUSICA: techno / tech house di tendenza",scheduled,,auto
+🎵 Aggiungi la MUSICA: techno / tech house di tendenza",queued,4auNig7rW92L,consegna programmata 26/11 11:30
 c-1126,2026-11-26 13:00,REMINDER,,"🔎 Controlla i profili degli eventi e dei club del sito
 Guarda se hanno pubblicato post, reel o storie nuove.
 Se c'è qualcosa → Condividi → ""Aggiungi alla storia"" + sticker LINK ai biglietti + tag del profilo
@@ -1484,4 +1484,50 @@ s-1130-5,2026-11-30 22:30,REMINDER,storia-xtIjw0kCc5dJ3foBLIgGsx8hyngfQ208rqOlo1
 1) Salva l'immagine  2) Instagram → nuova storia
 3) Sticker LINK: https://ticketdimension.it/evento/hardstyler-w-luca-agnelli-leonardo-mag
 4) Extra: domanda ""Che pezzo vuoi sentire? 🎧""
+🎵 Aggiungi la MUSICA: techno / tech house di tendenza",scheduled,,auto
+s-1201-1,2026-12-01 11:30,REMINDER,storia-holy-priest-link.jpg,"📲 Storia da pubblicare: Holy Priest · 4 Dicembre, Fabrique, Milano
+1) Salva l'immagine  2) Instagram → nuova storia
+3) Sticker LINK: https://ticketdimension.it/evento/holy-priest
+4) Extra: cursore emoji 🔥 ""Quanto sei carico?""
+🎵 Aggiungi la MUSICA: techno / tech house di tendenza",scheduled,,auto
+c-1201,2026-12-01 13:00,REMINDER,,"🔎 Controlla i profili degli eventi e dei club del sito
+Guarda se hanno pubblicato post, reel o storie nuove.
+Se c'è qualcosa → Condividi → ""Aggiungi alla storia"" + sticker LINK ai biglietti + tag del profilo
+https://www.instagram.com/",scheduled,,auto
+s-1201-2,2026-12-01 14:00,REMINDER,storia-holy-priest-roma-link.jpg,"📲 Storia da pubblicare: Holy Priest · Terminal 1 · 5 Dicembre, Terminal 1, Cinecittà World, Roma
+1) Salva l'immagine  2) Instagram → nuova storia
+3) Sticker LINK: https://ticketdimension.it/evento/holy-priest-terminal-1-co-cinecitta-world
+4) Extra: sondaggio ""Prima volta o veterano?""
+🎵 Aggiungi la MUSICA: techno / tech house di tendenza",scheduled,,auto
+s-1201-3,2026-12-01 18:00,REMINDER,storia-tJYHwSw6FKTtj1YlXq0K43tB6keIa4ZkfM3eTgDj-link.jpg,"📲 Storia da pubblicare: Cuartero, Sante Sansone · 5 Dicembre, Amnesia Milano, Milano
+1) Salva l'immagine  2) Instagram → nuova storia
+3) Sticker LINK: https://ticketdimension.it/evento/cuartero-sante-sansone
+4) Extra: quiz ""Indovina l'orario del set""
+🎵 Aggiungi la MUSICA: techno / tech house di tendenza",scheduled,,auto
+p-1201,2026-12-01 19:00,REMINDER,post-xtIjw0kCc5dJ3foBLIgGsx8hyngfQ208rqOlo1d2.jpg,"📸 Post da pubblicare: Hardstyler w/ Luca Agnelli + Leonardo + Mag
+1) Salva l'immagine  2) Instagram → nuovo post
+3) Copia questa descrizione:
+
+🔥 HARDSTYLER W/ LUCA AGNELLI + LEONARDO + MAG
+7 Dicembre · Anima Club Odissea, Spresiano
+
+Si balla tra 6 giorni ⏳
+
+🎟️ Biglietti su eventdimension.com · link in bio
+
+#HardstylerWLucaAgnelli #AnimaClubOdissea #Spresiano #clubbing #techno #nightlife #eventdimension",scheduled,,auto
+rp-1201,2026-12-01 19:30,REMINDER,,"🔁 Ricondividi il post nelle storie: Hardstyler w/ Luca Agnelli + Leonardo + Mag
+1) Apri il post → tasto Condividi → ""Aggiungi alla storia""
+2) Sticker LINK ai biglietti + testo ""NUOVO POST 👀""
+🎵 Aggiungi la MUSICA
+https://www.instagram.com/eventdimension_experience/",scheduled,,auto
+s-1201-4,2026-12-01 20:30,REMINDER,storia-time-warp-2027-link.jpg,"📲 Storia da pubblicare: Time Warp 2027 · 3 Aprile 2027, Maimarkthalle, Mannheim
+1) Salva l'immagine  2) Instagram → nuova storia
+3) Sticker LINK: https://eventdimension.com/eventi/time-warp-2027
+4) Extra: domanda ""Che pezzo vuoi sentire? 🎧""
+🎵 Aggiungi la MUSICA: anthem del festival / techno da main stage",scheduled,,auto
+s-1201-5,2026-12-01 22:30,REMINDER,storia-xtIjw0kCc5dJ3foBLIgGsx8hyngfQ208rqOlo1d2-link.jpg,"📲 Storia da pubblicare: Hardstyler w/ Luca Agnelli + Leonardo + Mag · 7 Dicembre, Anima Club Odissea, Spresiano
+1) Salva l'immagine  2) Instagram → nuova storia
+3) Sticker LINK: https://ticketdimension.it/evento/hardstyler-w-luca-agnelli-leonardo-mag
+4) Extra: sondaggio ""Ci sei? 🔥 Sì / Ovvio""
 🎵 Aggiungi la MUSICA: techno / tech house di tendenza",scheduled,,auto
